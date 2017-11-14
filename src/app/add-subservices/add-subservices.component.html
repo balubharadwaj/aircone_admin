@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-lg-12">
+      <div class="card">
+          <div class="card-header">
+              <strong>New Service</strong>
+          </div>
+          <div class="card-block loadingOuter">
+              <form class="form-horizontal" (ngSubmit)="submitButton()" #f="ngForm" novalidate>
+                  <div class="form-group row">
+                      <label class="col-md-2 form-control-label">Service Title</label>
+                      <div class="col-md-10">
+                          <input type="text" name="title" class="form-control" [(ngModel)]="subservice.subSerivceName" placeholder="Title" required>
+                      </div>
+                  </div>
+
+                  <div class="form-group row">
+                      <label class="col-md-2 form-control-label" for="file-input">Feature Image</label>
+                      <div class="col-md-2"><img width="100" src="{{subservice.image}}" /></div>
+                      <div class="col-md-8">
+                          <input type="file" id="file-input" name="file-input" (change)="fileChange($event)" placeholder="Upload file" required>
+                      </div>
+                  </div>
+
+                  <div class="form-group row">
+                      <label class="col-md-2 form-control-label">Service Name</label>                      
+                    <select class="form-control col-md-2" name="subService" [(ngModel)]="subservice.Serviceid" required>
+                        <option [ngValue]="All">All Services</option>
+                        <option *ngFor="let service of services" [ngValue]="service.id">{{service.serivceName}}</option>
+                    </select>
+                </div>
+
+                  <div class="form-group row">
+                    <label class="col-md-2 form-control-label">Service Description</label>
+                    <div class="col-md-10">
+                        <input type="text" name="description" class="form-control" [(ngModel)]="subservice.description" placeholder="Description" required>
+                    </div>
+                  </div>
+
+              </form>
+          </div>
+          <div class="card-footer">
+              <button type="submit" class="btn btn-sm btn-primary" (click)="saveSubService()" [disabled]="!f.valid"><i class="fa fa-dot-circle-o"></i> Submit</button>
+              <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+

@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>New Service</strong>
+            </div>
+            <div class="card-block loadingOuter">
+                <form class="form-horizontal" name="serviceForm" (ngSubmit)="submitButton()" #f="ngForm" novalidate>
+                    <div class="form-group row">
+                        <label class="col-md-2 form-control-label">Service Title</label>
+                        <div class="col-md-10">
+                            <input type="text" name="title" class="form-control" [(ngModel)]="service.serivceName" placeholder="Title" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-2 form-control-label" for="file-input">Feature Image</label>
+                        <div class="col-md-2"><img width="100" src="{{service.image}}" /></div>
+                        <div class="col-md-8">
+                            <input type="file" id="fileInput" name="file-input" (change)="fileChange($event)" placeholder="Upload file" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="col-md-2 form-control-label">Service Description</label>
+                      <div class="col-md-10">
+                          <input type="text" name="description" class="form-control" [(ngModel)]="service.description" placeholder="Description" required>
+                      </div>
+                  </div>
+
+                </form>
+                
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-sm btn-primary" (click)="saveService()" [disabled]="!f.valid"><i class="fa fa-dot-circle-o"></i> Submit</button>
+                <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

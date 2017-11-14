@@ -30,7 +30,7 @@ export class loginComponent {
           tempData.push(data);
           this.data = data;
           if (this.data.status === 200) {
-            this.router.navigate(['/Tips/1/ ']);
+            this.router.navigate(['ListRequests']);
             var userInfo = {
               "firstName": tempData[0].user.firstName,
               "id": tempData[0].user.id,

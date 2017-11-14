@@ -41,6 +41,30 @@ export const routes: Routes = [
         loadChildren: './categoryList/categoryList.module#categoryListModule'
       },
       {
+        path: 'Services',
+        loadChildren: './services/services.module#servicesModule'
+      },
+      {
+        path: 'SubServices',
+        loadChildren: './add-subservices/add-subservices.module#subServiceListModule'
+      },
+      {
+        path: 'AddServices',
+        loadChildren: './add-services/add-services.module#categoryListModule'
+      },
+      {
+        path: 'ListRequests',
+        loadChildren: './list-requests/list-requests.module#ListRequestsModule'
+      },
+      {
+        path: 'PostRequest',
+        loadChildren: './post-request/post-request.module#postRequestModule'
+      },
+      {
+        path: 'UsersList',
+        loadChildren: './userslist/userslist.module#vendorsListModule'
+      },
+      {
         path: 'TipsAdd',
         loadChildren: './tipsAdd/tipsAdd.module#tipsAddModule'
       },
