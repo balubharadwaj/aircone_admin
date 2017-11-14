@@ -35,6 +35,7 @@ import { SimpleLayoutComponent } from './layouts/simple-layout.component';
 import { TipsService } from './providers/tipsProvider/tipsProvider';
 import { AuthService } from './providers/tipsProvider/authProvider';
 import { globalService } from './providers/tipsProvider/globalService';
+import { AirconeService } from './providers/tipsProvider/aircone.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TagInputModule } from 'ngx-chips';
 
@@ -78,7 +79,8 @@ import { TagInputModule } from 'ngx-chips';
     TipsService,
     AuthService,
     globalService,
-    AuthGuard
+    AuthGuard,
+    AirconeService
   ],
   bootstrap: [ AppComponent ]
 })

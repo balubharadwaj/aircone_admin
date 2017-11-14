@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-lg-12">
+      <div class="card">
+          <div class="card-header">
+              <i class="fa fa-align-justify"></i> List of Services
+          </div>
+          <div class="card-block">
+              <table class="rwd-table table table-bordered table-striped table-condensed">
+                  <thead>
+                      <tr>
+                          <th>Image</th>
+                          <th>Title</th>
+                          <!-- <th>No of items</th> -->
+                          <th>Description</th>
+                          <th>Action</th>
+                          <th>Created Date</th>
+                        </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let service of services">
+
+                          <td data-th="Image"><img width="50" [src]="service.image"></td>
+                          <td data-th="Title"><span class="categoryTitle">{{service.serivceName}}</span></td>
+                          <td data-th="Description"><span class="categoryTitle">{{service.description}}</span></td>
+                          <td data-th="Actions">
+                            <button class="btn btn-danger btn-sm point" type="button" (click)="removeService(service)">Delete</button>                           
+                          </td>
+                          <td data-th="Created Date"><span class="categoryTitle">{{service.createdAt}}</span></td>
+                          
+                          <!-- <td data-th="No of items">{{Category.count}}</td> -->
+                          <!-- <td data-th="Actions"> -->
+                              <!-- <button class="btn btn-success btn-sm point" type="button" [routerLink]="['/CategoryEdit',Category.id]">Edit</button> -->
+
+                              <!--<button class="btn btn-primary btn-sm" type="button" (click)="makePublish(tip)">make Publish</button>
+                              </template>
+                              <template *ngIf="Category.status === 'ACTIVE'">
+                              <button  class="btn btn-info btn-sm" type="button">Active</button>
+                              </template>-->
+                          <!-- </td> -->
+                      </tr>
+                  </tbody>
+              </table>
+
+          </div>
+      </div>
+  </div>
+  <!--/.col-->
+</div>

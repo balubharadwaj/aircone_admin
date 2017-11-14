@@ -18,8 +18,21 @@ export class TipsService {
     console.log('Hello TipsService Provider');
   }
 
+
+  loadServices() {
+    return new Promise(resolve => {
+      this.http.get('http://localhost:1337/get/allRequest')
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          console.log("dcsdcs")
+          console.log(this.data)
+          resolve(this.data);
+        })
+    })
+  }
+
   load(userId) {
-    console.log('ascasdcadsca')
     return new Promise(resolve => {
       this.http.get('http://ec2-52-66-121-193.ap-south-1.compute.amazonaws.com/tips/'+ userId +'/list/allUser')
         .map(res => res.json())
