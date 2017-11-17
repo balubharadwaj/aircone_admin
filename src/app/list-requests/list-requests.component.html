@@ -52,9 +52,17 @@
                           <td class="gender" data-th="Gender">{{request.subServiceName}}</td>
                           <td data-th="Category">{{request.status}}</td>
                           <td data-th="Actions">
-                            <button class="btn btn-danger btn-sm point" type="button" (click)="deleteRequest(request)">Delete</button>                              
-                            <button [disabled]="request.status === 'ORDER_ACCEPTED'" class="btn btn-primary btn-sm point" type="button" (click)="requestApprove(request)">Approve Request</button>
-                            <button [disabled]="request.status === 'ORDER_DECLINED'" class="btn btn-info btn-sm point" type="button" (click)="requestDecline(request)">Decline Request</button>
+                            <button class="btn btn-danger btn-sm point" type="button" (click)="deleteRequest(request)">Delete</button>     
+                            <div class="form-group col-md-2">
+                                <select class="form-control" name="statusbar" [(ngModel)]="request.status" (change)="statusChanged(request)" required>
+                                    <!-- <option value="">Action</option> -->
+                                    <option *ngFor="let stat of status">{{stat}}</option>
+                                    
+                                    <!-- <option *ngFor="let category of Categories">{{category.name}}</option> -->
+                                </select>
+                            </div>                         
+                            <!-- <button [disabled]="request.status === 'ORDER_ACCEPTED'" class="btn btn-primary btn-sm point" type="button" (click)="requestApprove(request)">Approve Request</button>
+                            <button [disabled]="request.status === 'ORDER_DECLINED'" class="btn btn-info btn-sm point" type="button" (click)="requestDecline(request)">Decline Request</button> -->
                             <!-- <button type="button" class="editIcon" (click)="modal.open()">Open me!</button> -->
                             
                         </td>

@@ -20,7 +20,7 @@
                       <tr *ngFor="let service of services">
 
                           <td data-th="Image"><img width="50" [src]="service.image"></td>
-                          <td data-th="Title"><span class="categoryTitle">{{service.serivceName}}</span></td>
+                          <td data-th="Title"><span class="categoryTitle">{{service.serviceName}}</span></td>
                           <td data-th="Description"><span class="categoryTitle">{{service.description}}</span></td>
                           <td data-th="Actions">
                             <button class="btn btn-danger btn-sm point" type="button" (click)="removeService(service)">Delete</button>                           

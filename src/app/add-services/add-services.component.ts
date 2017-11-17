@@ -8,7 +8,7 @@ import { Modal, BSModalContext } from 'ngx-modialog/plugins/bootstrap';
 })
 export class AddServicesComponent implements OnInit {
 
-  private service = {image:''};
+  private service = {image:'', slider:[], serviceName:'', description:'', note:''};
   
   constructor(public airconeService: AirconeService, public modal: Modal) { }
 
@@ -29,12 +29,27 @@ export class AddServicesComponent implements OnInit {
     });
   }
 
+  sliderfileChange(fileinput: any) {
+    this.myfile = fileinput.target.files[0];
+    this.airconeService.fileUpload(this.myfile)
+    .then(data => {
+      this.service.slider.push(data['files'][0].url);
+    },
+  err => {
+    console.log(err);
+    });
+  }
+
   saveService() {
     console.log(this.service)
     if(this.service.image != '') {
       this.airconeService.addService(this.service)
       .then( data => {
         this.service.image = '';
+        this.service.serviceName = '';
+        this.service.description = '';
+        this.service.note = '';
+        this.service.slider = [];
       }, err => {
         console.log(err)
       }) 

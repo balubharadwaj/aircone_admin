@@ -112,7 +112,7 @@ export class AirconeService {
   }
 
   approveRequest(request) {
-    if (request.decline == "decline") {
+    if (request.status == "ORDER_DECLINED") {
       return new Promise(resolve => {
         this.http.get('http://localhost:1337/get/'+ request.id +'/approveRequest?decline='+request.decline)       
           .map(res => res.json())
@@ -122,7 +122,7 @@ export class AirconeService {
           })
       });
     } else {
-      return new Promise(resolve => {
+      return new Promise(resolve => { 
         this.http.get('http://localhost:1337/get/'+ request.id +'/approveRequest')       
           .map(res => res.json())
           .subscribe(data => {
@@ -131,6 +131,19 @@ export class AirconeService {
           })
       });
     }
+  }
+
+  requestUpdate(request) {
+    console.log(request)
+    console.log("sdcasfceas")
+    return new Promise(resolve => { 
+      this.http.get('http://localhost:1337/get/'+ request.id +'/approveRequest?status='+request.status)       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
   }
 
   loadUsers() {
