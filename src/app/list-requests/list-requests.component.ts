@@ -9,13 +9,14 @@ import { Modal, BSModalContext } from 'ngx-modialog/plugins/bootstrap';
 })
 export class ListRequestsComponent implements OnInit {
   message:String;
-  
+  status = ["ORDER_ACCEPTED", "ORDER_DECLINED"];
   public requests;
   @ViewChild('modal')
   modalBig: ModalComponent;
   
   constructor(public airconeService: AirconeService,public modal: Modal) { 
     this.getAllRequests()
+    this.status;
   }
 
   ngOnInit() {
@@ -44,11 +45,23 @@ export class ListRequestsComponent implements OnInit {
   }
 
   requestDecline(request) {
-    request.decline = "decline";
     this.airconeService.approveRequest(request)
     .then( data => {
       this.getAllRequests()
     })
+  }
+
+  statusChanged(request) {
+    console.log(request.status)
+    this.airconeService.requestUpdate(request)
+    .then( data => {
+      this.getAllRequests()
+    })
+
+  }
+
+  editRequest(reuests) {
+
   }
 
 }

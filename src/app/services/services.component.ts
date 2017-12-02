@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AirconeService} from '../providers/tipsProvider/aircone.service';
-
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   templateUrl: './services.component.html',
@@ -9,7 +9,7 @@ export class ServicesComponent implements OnInit {
 
   public services;
 
-  constructor(public airconeService: AirconeService) {
+  constructor(public airconeService: AirconeService, public router: Router,private route: ActivatedRoute) {
     this.loadServices()
    }
 
