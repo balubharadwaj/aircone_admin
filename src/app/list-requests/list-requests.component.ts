@@ -60,4 +60,8 @@ export class ListRequestsComponent implements OnInit {
 
   }
 
+  editRequest(reuests) {
+
+  }
+
 }

@@ -9,6 +9,8 @@ export class AirconeService {
   data;
   options;
   imageData;
+   //baseURL = "https://air-cone-backend.appspot.com"; //production
+   baseURL = "http://localhost:80"; //development
   constructor(public http: Http, public globalservices:globalService) {
     let headers = new Headers();
     headers.append('Content-Type', 'multipart/form-data');
@@ -18,7 +20,7 @@ export class AirconeService {
 
    loadServices() {
     return new Promise(resolve => {
-      this.http.get('http://localhost:1337/service/getAllSerive')
+      this.http.get(this.baseURL+'/service/getAllSerive')
         .map(res => res.json())
         .subscribe(data => {
           this.data = data;
@@ -29,7 +31,18 @@ export class AirconeService {
 
   addService(data) {
     return new Promise(resolve => {
-      this.http.post('http://localhost:1337/service/createService', data)
+      this.http.post(this.baseURL+'/service/createService', data)
+      .map(res => res.json())
+      .subscribe(data => {
+        this.data = data;
+        resolve(this.data);
+      })
+    })
+  }
+
+   updateService(data) {
+    return new Promise(resolve => {
+      this.http.put(this.baseURL+'/service/'+data.id+'/updateService', data)
       .map(res => res.json())
       .subscribe(data => {
         this.data = data;
@@ -41,7 +54,7 @@ export class AirconeService {
   addSubService(data) {
     console.log(data)
     return new Promise(resolve => {
-      this.http.post('http://localhost:1337/service/'+ data.Serviceid+'/createSubService', data)
+      this.http.post(this.baseURL+'/service/'+ data.Serviceid+'/createSubService', data)
       .map(res => res.json())
       .subscribe(data => {
         this.data = data;
@@ -77,7 +90,7 @@ export class AirconeService {
   deleteService(serviceId) {
     return new Promise(resolve => {
       // this.http.post('http://ec2-52-66-121-193.ap-south-1.compute.amazonaws.com/file/base64/upload', data)
-      this.http.delete('http://localhost:1337/service/'+serviceId+'/deleteService')       
+      this.http.delete(this.baseURL+'/service/'+serviceId+'/deleteService')       
         .map(res => res.json())
         .subscribe(data => {
           // console.log(data)
@@ -90,7 +103,20 @@ export class AirconeService {
   getAllRequests() {
     return new Promise(resolve => {
       // this.http.post('http://ec2-52-66-121-193.ap-south-1.compute.amazonaws.com/file/base64/upload', data)
-      this.http.get('http://localhost:1337/get/allRequest')       
+      this.http.get(this.baseURL+'/get/allRequest')       
+        .map(res => res.json())
+        .subscribe(data => {
+          // console.log(data)
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  getOneService(serviceId) {
+    return new Promise(resolve => {
+      // this.http.post('http://ec2-52-66-121-193.ap-south-1.compute.amazonaws.com/file/base64/upload', data)
+      this.http.get(this.baseURL+'/service/'+serviceId+'/getOneSerive')       
         .map(res => res.json())
         .subscribe(data => {
           // console.log(data)
@@ -102,7 +128,7 @@ export class AirconeService {
 
   deleteRequest(requestId) {
     return new Promise(resolve => {
-      this.http.delete('http://localhost:1337/delete/'+ requestId +'/request')       
+      this.http.delete(this.baseURL+'/'+ requestId +'/request')       
         .map(res => res.json())
         .subscribe(data => {
           this.data = data;
@@ -114,7 +140,7 @@ export class AirconeService {
   approveRequest(request) {
     if (request.status == "ORDER_DECLINED") {
       return new Promise(resolve => {
-        this.http.get('http://localhost:1337/get/'+ request.id +'/approveRequest?decline='+request.decline)       
+        this.http.get(this.baseURL+'/get/'+ request.id +'/approveRequest?decline='+request.decline)       
           .map(res => res.json())
           .subscribe(data => {
             this.data = data;
@@ -123,7 +149,7 @@ export class AirconeService {
       });
     } else {
       return new Promise(resolve => { 
-        this.http.get('http://localhost:1337/get/'+ request.id +'/approveRequest')       
+        this.http.get(this.baseURL+'/get/'+ request.id +'/approveRequest')       
           .map(res => res.json())
           .subscribe(data => {
             this.data = data;
@@ -137,7 +163,7 @@ export class AirconeService {
     console.log(request)
     console.log("sdcasfceas")
     return new Promise(resolve => { 
-      this.http.get('http://localhost:1337/get/'+ request.id +'/approveRequest?status='+request.status)       
+      this.http.get(this.baseURL+'/get/'+ request.id +'/approveRequest?status='+request.status)       
         .map(res => res.json())
         .subscribe(data => {
           this.data = data;
@@ -148,7 +174,7 @@ export class AirconeService {
 
   loadUsers() {
     return new Promise(resolve => {
-      this.http.get('http://localhost:1337/user/list')       
+      this.http.get(this.baseURL+'/user/list')       
         .map(res => res.json())
         .subscribe(data => {
           this.data = data;

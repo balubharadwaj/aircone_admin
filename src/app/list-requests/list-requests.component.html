@@ -36,7 +36,6 @@
                           <th>Index</th>
                           <th>User Name</th>
                           <th>Service Name</th>
-                          <th>Sub Service Name</th>
                           <th>Status</th>
                           <!-- <th>Actions</th> -->
                           <th class="gender">Actions</th>
@@ -49,10 +48,9 @@
                           <td data-th="Vendor Name">{{request.id}}</td>
                           <td data-th="Post Image">{{request.userId}}</td>
                           <td data-th="Title"><span class="tipTitle">{{request.serviceName}}</span></td>
-                          <td class="gender" data-th="Gender">{{request.subServiceName}}</td>
                           <td data-th="Category">{{request.status}}</td>
                           <td data-th="Actions">
-                            <button class="btn btn-danger btn-sm point" type="button" (click)="deleteRequest(request)">Delete</button>     
+                            <button class="btn btn-danger btn-sm point" type="button" (click)="deleteRequest(request)">Delete</button> 
                             <div class="form-group col-md-2">
                                 <select class="form-control" name="statusbar" [(ngModel)]="request.status" (change)="statusChanged(request)" required>
                                     <!-- <option value="">Action</option> -->

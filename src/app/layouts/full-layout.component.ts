@@ -57,8 +57,7 @@ export class FullLayoutComponent implements OnInit {
      data => {
        this.user = data[0];
        if(!this.user.userDetails){
-        this.user.userDetails = {};
-        
+        this.user.userDetails = {};        
        }
        localStorage.setItem('userImage', JSON.stringify(this.user.userDetails.image));
      }

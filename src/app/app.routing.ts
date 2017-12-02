@@ -49,7 +49,7 @@ export const routes: Routes = [
         loadChildren: './add-subservices/add-subservices.module#subServiceListModule'
       },
       {
-        path: 'AddServices',
+        path: 'AddServices/:serviceId',
         loadChildren: './add-services/add-services.module#categoryListModule'
       },
       {
