@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {AirconeService} from '../providers/tipsProvider/aircone.service';
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { Modal, BSModalContext } from 'ngx-modialog/plugins/bootstrap';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   templateUrl: './list-requests.component.html',
@@ -13,10 +14,14 @@ export class ListRequestsComponent implements OnInit {
   public requests;
   @ViewChild('modal')
   modalBig: ModalComponent;
+  curPage = '1';
+  itemsPPage = 10;
   
-  constructor(public airconeService: AirconeService,public modal: Modal) { 
+  constructor(public airconeService: AirconeService,public modal: Modal, public router: Router, private route: ActivatedRoute) { 
     this.getAllRequests()
     this.status;
+    this.curPage = route.params['page'];
+    
   }
 
   ngOnInit() {
@@ -60,8 +65,13 @@ export class ListRequestsComponent implements OnInit {
 
   }
 
-  editRequest(reuests) {
+  pagination(i,p){    
+    return ((Number(this.curPage)- 1)*this.itemsPPage)+i+1;
+  }
 
+  changePage(event){
+    this.router.navigate(['/ListRequests/'+event]);
+    this.curPage = event;
   }
 
 }

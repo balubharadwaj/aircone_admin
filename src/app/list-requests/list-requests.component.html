@@ -43,9 +43,9 @@
                   </thead>
                   <tbody>
 
-                      <tr *ngFor="let request of requests">
+                      <tr *ngFor="let request of requests  | paginate: { itemsPerPage: itemsPPage, currentPage: curPage };let i = index" [attr.data-index]="i">
                           <!-- <td data-th="Index">{{pagination(i,curPage)}}</td> -->
-                          <td data-th="Vendor Name">{{request.id}}</td>
+                          <td data-th="Vendor Name">{{pagination(i,curPage)}}</td>
                           <td data-th="Post Image">{{request.userId}}</td>
                           <td data-th="Title"><span class="tipTitle">{{request.serviceName}}</span></td>
                           <td data-th="Category">{{request.status}}</td>
@@ -68,7 +68,7 @@
                       </tr>
                   </tbody>
               </table>
-              <!-- <pagination-controls (pageChange)="changePage($event)" autoHide="true" previousLabel="" nextLabel=""></pagination-controls> -->
+              <pagination-controls (pageChange)="changePage($event)" autoHide="true" previousLabel="" nextLabel=""></pagination-controls>
           </div>
       </div>
   </div>

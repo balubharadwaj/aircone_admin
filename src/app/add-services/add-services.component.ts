@@ -77,6 +77,7 @@ export class AddServicesComponent implements OnInit {
   }
 
   saveService() {
+    console.log(this.service)
     if (this.updatetrue) {
       if(this.service.image != '') {
         this.service.subServices = this.subServices
@@ -97,6 +98,8 @@ export class AddServicesComponent implements OnInit {
       
     } 
     else {
+      console.log(this.service)
+      
       console.log("new service")
       if(this.service.image != '') {
         this.service.subServices = this.subServices        

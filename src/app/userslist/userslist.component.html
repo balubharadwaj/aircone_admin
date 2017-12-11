@@ -18,8 +18,8 @@
                   </thead>
 
                   <tbody>
-                      <tr *ngFor="let user of users">
-                          <td data-th="S.no">{{user.id}}</td>
+                      <tr *ngFor="let user of users  | paginate: { itemsPerPage: itemsPPage, currentPage: curPage };let i = index" [attr.data-index]="i">
+                          <td data-th="S.no">{{pagination(i,curPage)}}</td>
                           <td data-th="Name"><span class="categoryTitle">{{user.firstName}}</span></td>
                           <!-- <td data-th="Mobile Number"><span class="categoryTitle">{{vendor.mobileNumber}}</span></td> -->
                           <td data-th="Email"><span class="categoryTitle">{{user.email}}</span></td>
