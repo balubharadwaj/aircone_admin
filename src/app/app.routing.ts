@@ -29,18 +29,6 @@ export const routes: Routes = [
         loadChildren: './components/components.module#ComponentsModule'
       },
       {
-        path: 'Tips/:page/:search',
-        loadChildren: './tipsLists/tipsLists.module#tipsListsModule'
-      },
-      {
-        path: 'AllTips/:page/:search',
-        loadChildren: './AlltipsList/AlltipsLists.module#AlltipsListsModule'
-      },
-      {
-        path: 'Categories',
-        loadChildren: './categoryList/categoryList.module#categoryListModule'
-      },
-      {
         path: 'Services',
         loadChildren: './services/services.module#servicesModule'
       },
@@ -53,7 +41,7 @@ export const routes: Routes = [
         loadChildren: './add-services/add-services.module#categoryListModule'
       },
       {
-        path: 'ListRequests',
+        path: 'ListRequests/:page',
         loadChildren: './list-requests/list-requests.module#ListRequestsModule'
       },
       {
@@ -61,53 +49,8 @@ export const routes: Routes = [
         loadChildren: './post-request/post-request.module#postRequestModule'
       },
       {
-        path: 'UsersList',
+        path: 'UsersList/:page',
         loadChildren: './userslist/userslist.module#vendorsListModule'
-      },
-      {
-        path: 'TipsAdd',
-        loadChildren: './tipsAdd/tipsAdd.module#tipsAddModule'
-      },
-      {
-        path: 'AddCategory',
-        loadChildren: './AddCategory/AddCategory.module#AddCategoryModule'
-      },
-      {
-        path: 'TipsEdit/:tipId',
-        loadChildren: './tipsEdit/tipsEdit.module#tipsEditModule'
-      },
-      {
-        path: 'CategoryEdit/:categoryId',
-        loadChildren: './categoryEdit/categoryEdit.module#categoryEditModule'
-      },
-      {
-        path: 'TipsDeleted',
-        loadChildren: './tipsDeleted/tipsDeleted.module#tipsDeletedModule'
-      },
-        {
-        path: 'Details',
-        loadChildren: './Details/Details.module#DetailsModule'
-      },
-      {
-       path: 'changePassword',
-        loadChildren: './changePassword/changePassword.module#changePasswordModule'
-      },
-      {
-       path: 'vendorsList/:page',
-        loadChildren: './vendorsList/vendorsList.module#vendorsListModule'
-      },
-
-      {
-        path: 'icons',
-        loadChildren: './icons/icons.module#IconsModule'
-      },
-      {
-        path: 'widgets',
-        loadChildren: './widgets/widgets.module#WidgetsModule'
-      },
-      {
-        path: 'charts',
-        loadChildren: './chartjs/chartjs.module#ChartJSModule'
       }
     ]
   },

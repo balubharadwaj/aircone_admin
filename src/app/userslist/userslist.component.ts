@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AirconeService} from '../providers/tipsProvider/aircone.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   templateUrl: './userslist.component.html',
@@ -7,9 +8,11 @@ import {AirconeService} from '../providers/tipsProvider/aircone.service';
 export class UserslistComponent implements OnInit {
 
   public users;
-
-  constructor(public airconeService: AirconeService) {
-    this.loadUsers()
+  curPage = '1';
+  itemsPPage = 10;
+  constructor(public airconeService: AirconeService, public router: Router, private route: ActivatedRoute) {
+    this.loadUsers();
+    this.curPage = route.params['page'];    
    }
 
   ngOnInit() {
@@ -25,5 +28,15 @@ export class UserslistComponent implements OnInit {
   deleteUser() {
 
   }
+
+  pagination(i,p){    
+    return ((Number(this.curPage)- 1)*this.itemsPPage)+i+1;
+  }
+
+  changePage(event){
+    this.router.navigate(['/ListRequests/'+event]);
+    this.curPage = event;
+  }
+
 
 }

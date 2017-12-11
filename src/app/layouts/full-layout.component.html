@@ -1,6 +1,6 @@
 <header class="app-header navbar">
     <button class="navbar-toggler mobile-sidebar-toggler hidden-lg-up" type="button">&#9776;</button>
-    <a class="logoHead" [routerLink]="[ '/Tips/1/ ']"> <img src="assets/img/logo.png"></a>
+    <a class="logoHead" [routerLink]="[ '/ListRequests/1/']"> <img src="assets/img/logo.png"></a>
 
     <ul class="nav navbar-nav hidden-md-down">
         <li class="nav-item">
@@ -74,7 +74,7 @@
                     <a class="nav-link nav-dropdown-toggle " href="javascript:void() "><i class="icon-layers "></i> Requests</a>
                     <ul class="nav-dropdown-items ">
                         <li class="nav-item ">
-                            <a class="nav-link mobile-sidebar-toggler" routerLinkActive="active " [routerLink]="[ '/ListRequests'] "><i class="icon-list "></i> Requests List</a>
+                            <a class="nav-link mobile-sidebar-toggler" routerLinkActive="active " [routerLink]="[ '/ListRequests/1/'] "><i class="icon-list "></i> Requests List</a>
                         </li>
 
                         <li *ngIf="hideRole( 'VENDOR') " class="nav-item ">
@@ -114,7 +114,7 @@
                     <a class="nav-link nav-dropdown-toggle " href="javascript:void() "><i class="icon-layers "></i>Users List</a>
                     <ul class="nav-dropdown-items ">
                         <li class="nav-item ">
-                            <a class="nav-link mobile-sidebar-toggler" routerLinkActive="active " [routerLink]="[ '/UsersList'] "><i class="icon-list "></i>Users List</a>
+                            <a class="nav-link mobile-sidebar-toggler" routerLinkActive="active " [routerLink]="[ '/UsersList/1/'] "><i class="icon-list "></i>Users List</a>
                         </li>
                     </ul>
                 </li>
