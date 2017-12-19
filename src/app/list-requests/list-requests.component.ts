@@ -16,9 +16,12 @@ export class ListRequestsComponent implements OnInit {
   modalBig: ModalComponent;
   curPage = '1';
   itemsPPage = 10;
+  users;
+  mechanicUserId;
   
   constructor(public airconeService: AirconeService,public modal: Modal, public router: Router, private route: ActivatedRoute) { 
-    this.getAllRequests()
+    this.getAllRequests();
+    this.getAllUsers();
     this.status;
     this.curPage = route.params['page'];
     
@@ -31,6 +34,28 @@ export class ListRequestsComponent implements OnInit {
     this.airconeService.getAllRequests()
     .then( data => {
       this.requests = data;
+    })
+  }
+
+  getAllUsers() {
+    this.airconeService.loadUsers()
+    .then( data => {
+      this.users = data;
+      console.log(this.users[0].role[0])
+    })
+  }
+
+  selectMechanic(request){
+    console.log(this.mechanicUserId)
+    console.log(request.id)
+    var mechData = {
+      mechUserId: this.mechanicUserId,
+      request: request
+    }
+    this.airconeService.assignToMechanic(mechData)
+    .then( data => {
+   //   this.requests.splice(this.requests.indexOf(request, 1))
+      this.getAllRequests()      
     })
   }
 
@@ -50,8 +75,9 @@ export class ListRequestsComponent implements OnInit {
   }
 
   requestDecline(request) {
-    this.airconeService.approveRequest(request)
+    this.airconeService.declineRequest(request.id)
     .then( data => {
+      console.log(data)
       this.getAllRequests()
     })
   }

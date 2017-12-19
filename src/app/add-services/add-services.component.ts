@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AddServicesComponent implements OnInit {
 
-  public service: any = {image:'', slider:[], serviceName:'', description:'', note:''};
+  public service: any = {image:'', slider:[], serviceName:'', description:'', note:'', subService:[]};
   private serviceId: any;
   updatetrue: boolean = false;
   subServices = [];
@@ -26,6 +26,8 @@ export class AddServicesComponent implements OnInit {
 
   ngOnInit() {
   }
+
+
 
   subserviceadd(oneSubService) {
     this.service.subService.push(oneSubService)

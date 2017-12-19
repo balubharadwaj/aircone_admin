@@ -25,8 +25,11 @@ export class UserslistComponent implements OnInit {
     })
   }
 
-  deleteUser() {
-
+  deleteUser(user) {
+    this.users.splice(this.users.indexOf(user, 1))    
+    this.airconeService.deleteUser(user.id)
+    .then( data => {
+    })
   }
 
   pagination(i,p){    

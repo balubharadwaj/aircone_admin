@@ -95,5 +95,3 @@ login(){
   this.router.navigate(['/pages/login']);
 }
 }
-
-

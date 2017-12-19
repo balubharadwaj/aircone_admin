@@ -138,7 +138,6 @@ export class AirconeService {
   }
 
   approveRequest(request) {
-    if (request.status == "ORDER_DECLINED") {
       return new Promise(resolve => {
         this.http.get(this.baseURL+'/get/'+ request.id +'/approveRequest?decline='+request.decline)       
           .map(res => res.json())
@@ -147,17 +146,19 @@ export class AirconeService {
             resolve(this.data);
           })
       });
-    } else {
-      return new Promise(resolve => { 
-        this.http.get(this.baseURL+'/get/'+ request.id +'/approveRequest')       
-          .map(res => res.json())
-          .subscribe(data => {
-            this.data = data;
-            resolve(this.data);
-          })
-      });
-    }
   }
+
+  declineRequest(requestId) {
+    var data
+    return new Promise(resolve => {
+      this.http.put(this.baseURL+'/get/'+requestId+'/requestDeclined',data)       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+}
 
   requestUpdate(request) {
     console.log(request)
@@ -175,6 +176,72 @@ export class AirconeService {
   loadUsers() {
     return new Promise(resolve => {
       this.http.get(this.baseURL+'/user/list')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  deleteUser(userId) {
+    return new Promise(resolve => {
+      this.http.delete(this.baseURL+'/remove/'+userId+'/user')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  userWiseFeedback() {
+    return new Promise(resolve => {
+      this.http.get(this.baseURL+'/get/getUserwiseFeedback')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  addSpare(data) {
+    return new Promise(resolve => {
+      this.http.post(this.baseURL+'/create/spare', data)       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  loadspares() {
+    return new Promise(resolve => {
+      this.http.get(this.baseURL+'/get/allspareslist')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  removespare(data) {
+    return new Promise(resolve => {
+      this.http.delete(this.baseURL+'/delete/'+data+'/onespare')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  assignToMechanic(data) {
+    return new Promise(resolve => {
+      this.http.post(this.baseURL+'/create/assignmechanic', data)       
         .map(res => res.json())
         .subscribe(data => {
           this.data = data;
