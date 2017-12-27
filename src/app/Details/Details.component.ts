@@ -49,10 +49,10 @@ export class DetailsComponent {
      
      var b =[];
      b.push(a);
-    this.Auth.getVendor(b[0].id)
+    this.Auth.getUser(b[0].id)
     .then(
          data => {
-           this.user = data[0];   
+           this.user = data;   
            if(!this.user.userDetails){
              this.user.userDetails = {};
            }  
@@ -163,7 +163,7 @@ export class DetailsComponent {
             };
             
             localStorage.setItem('userData', JSON.stringify(userInfo));
-            localStorage.setItem('userImage', JSON.stringify(this.user.userDetails.image));
+            localStorage.setItem('userImage', this.user.userDetails.image);
            this.vendor("Successfully Updated");
            this.data = data;    
          });  

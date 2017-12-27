@@ -45,7 +45,7 @@ export const routes: Routes = [
         loadChildren: './list-requests/list-requests.module#ListRequestsModule'
       },
       {
-        path: 'PostRequest',
+        path: 'PostRequest/:requestId',
         loadChildren: './post-request/post-request.module#postRequestModule'
       },
       {
@@ -67,6 +67,10 @@ export const routes: Routes = [
       {
         path: 'Details',
         loadChildren: './Details/Details.module#DetailsModule'
+      },
+      {
+        path: 'Pincode',
+        loadChildren: './pincode/pincode.module#pincodeListModule'
       },
     ]
   },

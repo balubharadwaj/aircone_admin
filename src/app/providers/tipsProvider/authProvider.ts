@@ -116,9 +116,9 @@ export class AuthService {
     });
   }
 
-      public getVendor(vendorID) {
+      public getUser(userId) {
     return new Promise(resolve => {
-      this.http.get(this.baseURL+'/user/'+ vendorID +'/listUser')
+      this.http.get(this.baseURL+'/user/'+ userId +'/listOneUser')
         .map(res => res.json())
         .subscribe(data => {
           this.data = data;

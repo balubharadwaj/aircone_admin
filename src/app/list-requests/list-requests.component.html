@@ -1,29 +1,25 @@
 <div class="row">
   <div class="col-lg-12">
-      <!-- <div class="card">
+      <div class="card">
           <div class="card-header">
               <i class="fa fa-align-justify"></i> Search
           </div>
           <div class="card-block">
               <div class="row">
                   <div class="form-group col-md-2">
-                      <select class="form-control">
-                          <option value="all">All Categories</option>
-                          <option *ngFor="let category of Categories">{{category.name}}</option>
-                      </select>
-                  </div>
-                  <div class="form-group col-md-7">
-                      <input type="text" class="form-control" [(ngModel)]="searchText" id="searchText" placeholder="Search">
+                        <select name="ServiceId" class="form-control" [(ngModel)]="searchServiceId">
+                            <option [ngValue]="all">All Services</option>
+                            <option *ngFor="let service of services"  [ngValue]="service.id">{{service.serviceName}}</option>
+                        </select>
                   </div>
                   <div class="form-group col-md-3">
-                      <button (click)="searchTips(searchText)" type="button" class="btn btn-default point">Search</button>
-                      <button (click)="clearSearch()" type="button" class="btn btn-default point">Clear</button>
-                  </div>
-
-
+                      <button (click)="latestRequests()" type="button" class="btn btn-default point">Latest Requests</button>
+                      <button (click)="pendingRequests()" type="button" class="btn btn-default point">Pending Requests</button>
+                      <button (click)="closedRequests()" type="button" class="btn btn-default point">Closed Requests</button>                      
+                    </div>
               </div>
           </div>
-      </div> -->
+      </div>
       
       <div class="card">
           <div class="card-header">
@@ -35,44 +31,28 @@
                       <tr>
                           <th>Index</th>
                           <th>User Name</th>
-                          <th>Service Name</th>
+                          <th>Service Name</th>                         
+                          <th>Mechanic Name</th>
                           <th>Status</th>
-                          <!-- <th>Actions</th> -->
+                          <th>Service Price</th>
                           <th class="gender">Actions</th>
                       </tr>
                   </thead>
                   <tbody>
-
+                
                       <tr *ngFor="let request of requests  | paginate: { itemsPerPage: itemsPPage, currentPage: curPage };let i = index" [attr.data-index]="i">
                           <!-- <td data-th="Index">{{pagination(i,curPage)}}</td> -->
-                          <td data-th="Vendor Name">{{pagination(i,curPage)}}</td>
+                          <td data-th="Vendor Name">{{request.id}}</td>
                           <td data-th="Post Image">{{request.userId}}</td>
                           <td data-th="Title"><span class="tipTitle">{{request.serviceName}}</span></td>
+                          <td data-th="Post Image">{{request.mechanicName}}</td>
                           <td data-th="Category">{{request.status}}</td>
+                          <td data-th="Title"><span class="tipTitle">{{request.finalPrice}}</span></td>                          
                           <td data-th="Actions">
                             <button class="btn btn-danger btn-sm point" type="button" (click)="deleteRequest(request)">Delete</button> 
-                            <!-- <div class="form-group col-md-8">
-                                <select class="form-control" name="userassign">
-                                    <option [ngValue]="null" disabled>Assign User</option>
-                                    <option *ngFor="let user of users | user.role[0] == 'ADMIN'">{{user.firstName}}</option>                           
-                                </select>
-                            </div>                          -->
-                            <button class="btn btn-danger btn-sm point" type="button" (click)="requestDecline(request)">Decline</button>                             
-                            <div class="form-group col-md-7">
-                                <select class="form-control" name="userassign" [(ngModel)]="mechanicUserId" (change)="selectMechanic(request)" required>
-                                        <option [ngValue]= "all" disabled>Select Mechanic</option>                                                                                     
-                                    <ng-container *ngFor="let user of users">
-                                            <option *ngIf="user.role[0] == 'MECHANIC'"  [ngValue]="user.id" >{{user.firstName}}</option> 
-                                    </ng-container>                     
-                                </select>
-                            </div>  
+                            <button (click)="myModal.open()" (click)="getOneRequest(request)">View</button>
 
-                            <!-- <button [disabled]="request.status === 'ORDER_ACCEPTED'" class="btn btn-primary btn-sm point" type="button" (click)="requestApprove(request)">Approve Request</button>
-                            <button [disabled]="request.status === 'ORDER_DECLINED'" class="btn btn-info btn-sm point" type="button" (click)="requestDecline(request)">Decline Request</button> -->
-                            <!-- <button type="button" class="editIcon" (click)="modal.open()">Open me!</button> -->
-                            
                         </td>
-                          <!-- <td class="like" data-th="Likes">{{request.createdAt}}</td> -->
                       </tr>
                   </tbody>
               </table>
@@ -82,15 +62,46 @@
   </div>
 </div>
 
-<modal #modal>
-    <modal-header [show-close]="true">
-        <h4 class="modal-title">Upload Profile Pic</h4>
+
+<modal #myModal title="Request Details" modalClass="modal-lg">
+    <modal-header>
+        <h1></h1>
     </modal-header>
-    <modal-body>
-        <div>
-       <h2>frf4</h2>
-
+    <modal-content>
+        <div *ngIf="Onerequest">
+            <img src="{{Onerequest.serviceImage}}" width="150px"/>
+            <h4>{{Onerequest.serviceName}}</h4>
         </div>
-    </modal-body>
+        <div *ngIf="userAddress">
+            <p>User Name       : {{userAddress.Name}}</p>
+            <p>User Phone      :{{userAddress.Phone}}</p>
+            <p>User Alt Phone  :{{userAddress.AltPhone}}</p>
+            <p>User Address    :{{userAddress.Door}}, {{userAddress.Street}}, {{userAddress.Area}}</p>
+            <p>User Pincode    :{{userAddress.Pincode}}</p>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2 form-control-label">Reason for decline</label>
+            <div class="col-md-10">
+                <input type="text" name="title" class="form-control" [(ngModel)]="Reason" placeholder="Reason" required>
+            </div>
+            <button class="btn btn-danger btn-sm point" type="button" *ngIf="Onerequest" (click)="requestDecline(Onerequest)">Decline</button>                                         
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2 form-control-label">Select Mechanic</label>
+            <div class="form-group col-md-4">
+                <select class="form-control" name="userassign" [(ngModel)]="mechanicUserId">
+                    <option [ngValue]= "all" disabled>Select Mechanic</option>                                                                                     
+                    <ng-container *ngFor="let user of users">
+                        <option *ngIf="user.role[0] == 'MECHANIC'"  [ngValue]="user.id" >{{user.firstName}}</option> 
+                    </ng-container>                     
+                </select>
+            </div> 
+            <button class="btn btn-danger btn-sm point" *ngIf="Onerequest" type="button" (click)="assignRequest(Onerequest)">assign</button>             
+        </div>
+        <button class="btn btn-primary" (click)="myModal.close()">close</button>
+        
 
+    </modal-content>
+    <modal-footer>
+    </modal-footer>
 </modal>

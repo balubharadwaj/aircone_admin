@@ -77,11 +77,6 @@
                             <a class="nav-link mobile-sidebar-toggler" routerLinkActive="active " [routerLink]="[ '/ListRequests/1/'] "><i class="icon-list "></i> Requests List</a>
                         </li>
 
-                        <li *ngIf="hideRole( 'VENDOR') " class="nav-item ">
-                            <a class="nav-link mobile-sidebar-toggler" routerLinkActive="active " [routerLink]="[ '/PostRequest'] "><i class="icon-list "></i>Post Request</a>
-
-                        </li>
-
                         <!-- <li class="nav-item ">
                             <a class="nav-link mobile-sidebar-toggler" routerLinkActive="active " [routerLink]="[ '/TipsAdd'] "><i class="icon-plus "></i>Add Tip</a>
                         </li>
@@ -110,6 +105,9 @@
 
                         <li class="nav-item ">
                             <a class="nav-link mobile-sidebar-toggler" routerLinkActive="active " [routerLink]="[ '/SubServices'] "><i class="icon-plus "></i>  Add Sub Services </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link mobile-sidebar-toggler" routerLinkActive="active " [routerLink]="[ '/Pincode'] "><i class="icon-plus "></i>  Add/List Pincode </a>
                         </li>
 
                     </ul>
@@ -232,7 +230,7 @@
     <aside class="aside-menu ">
         <tabset>
             <tab>
-                <template tabHeading><i class="icon-list "></i></template>
+                <ng-template tabHeading><i class="icon-list "></i></ng-template>
                 <div class="callout m-0 py-h text-muted text-center bg-faded text-uppercase ">
                     <small><b>Today</b></small>
                 </div>
@@ -277,7 +275,6 @@
                             <img src="assets/img/avatars/5.jpg " class="img-avatar " alt="admin@bootstrapmaster.com ">
                         </div>
                         <div class="avatar avatar-xs ">
-                            <img src="assets/img/avatars/6.jpg " class="img-avatar " alt="admin@bootstrapmaster.com ">
                         </div>
                     </div>
                 </div>
@@ -306,7 +303,6 @@
                             <img src="assets/img/avatars/5.jpg " class="img-avatar " alt="admin@bootstrapmaster.com ">
                         </div>
                         <div class="avatar avatar-xs ">
-                            <img src="assets/img/avatars/6.jpg " class="img-avatar " alt="admin@bootstrapmaster.com ">
                         </div>
                         <div class="avatar avatar-xs ">
                             <img src="assets/img/avatars/7.jpg " class="img-avatar " alt="admin@bootstrapmaster.com ">
@@ -319,7 +315,7 @@
                 <hr class="mx-1 my-0 ">
             </tab>
             <tab>
-                <template tabHeading><i class="icon-speech "></i></template>
+                <ng-template tabHeading><i class="icon-speech "></i></ng-template>
                 <div class="p-1 ">
                     <div class="message ">
                         <div class="py-1 pb-3 mr-1 float-left ">
@@ -398,7 +394,7 @@
                 </div>
             </tab>
             <tab>
-                <template tabHeading><i class="icon-settings "></i></template>
+                <ng-template tabHeading><i class="icon-settings "></i></ng-template>
                 <div class="p-1 ">
                     <h6>Settings</h6>
 
