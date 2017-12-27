@@ -303,5 +303,16 @@ export class AirconeService {
     });
   }
 
+  deleteUserWiseFeedback(id) {
+    return new Promise(resolve => {
+      this.http.delete(this.baseURL+'/delete/'+id+'/userFeedback')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
 
 }

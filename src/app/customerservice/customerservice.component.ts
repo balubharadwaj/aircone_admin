@@ -22,8 +22,11 @@ export class CustomerserviceComponent implements OnInit {
     })
   }
 
-  deleteRequest() {
-
+  deleteRequest(user) {
+    this.airconeService.deleteUserWiseFeedback(user.id)
+    .then( data => {
+      this.loadUsers();
+    })
   }
 
 }
