@@ -45,13 +45,33 @@ export const routes: Routes = [
         loadChildren: './list-requests/list-requests.module#ListRequestsModule'
       },
       {
-        path: 'PostRequest',
+        path: 'PostRequest/:requestId',
         loadChildren: './post-request/post-request.module#postRequestModule'
       },
       {
         path: 'UsersList/:page',
         loadChildren: './userslist/userslist.module#vendorsListModule'
-      }
+      },
+      {
+        path: 'UserFeedback',
+        loadChildren: './customerservice/customerservice.module#customerserviceModule'
+      },
+      {
+        path: 'SpareParts',
+        loadChildren: './spareparts/spareparts.module#sparepartsModule'
+      },
+      {
+        path: 'AddMechanics',
+        loadChildren: './mechanics/mechanics.module#mechanicsAddModule'
+      },
+      {
+        path: 'Details',
+        loadChildren: './Details/Details.module#DetailsModule'
+      },
+      {
+        path: 'Pincode',
+        loadChildren: './pincode/pincode.module#pincodeListModule'
+      },
     ]
   },
   {

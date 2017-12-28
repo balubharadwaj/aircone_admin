@@ -38,7 +38,7 @@ export class FullLayoutComponent implements OnInit {
 
   getImage(){
     var sample:any = "";
-    var a:any = JSON.parse(localStorage.getItem('userImage'));
+    var a:any = localStorage.getItem('userImage');
     //console.log("Changes in code"+ a.firstName);
     if(a){
       sample = a;
@@ -52,16 +52,25 @@ export class FullLayoutComponent implements OnInit {
    a = JSON.parse(a);
    var b = [];
    b.push(a);
-   this.Auth.getVendor(b[0].id)
+   this.Auth.getUser(b[0].id)
    .then(
      data => {
-       this.user = data[0];
-       if(!this.user.userDetails){
-        this.user.userDetails = {};        
+       this.user = data;
+       if(this.user){
+         if(this.user.userDetails){
+           if(!this.user.userDetails.image){
+            this.user.userDetails   = {image:"assets/img/avatars/profile.png"};  
+           }
+         }else{
+          this.user.userDetails   = {image:"assets/img/avatars/profile.png"};  
+         }
+         localStorage.setItem('userImage',this.user.userDetails.image);
        }
-       localStorage.setItem('userImage', JSON.stringify(this.user.userDetails.image));
+       
      }
-   )
+   ).catch(err =>{
+     console.log(err);
+   })
    
   }
 

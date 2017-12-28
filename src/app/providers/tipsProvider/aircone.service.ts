@@ -128,7 +128,19 @@ export class AirconeService {
 
   deleteRequest(requestId) {
     return new Promise(resolve => {
-      this.http.delete(this.baseURL+'/'+ requestId +'/request')       
+      this.http.delete(this.baseURL+'/delete/'+ requestId +'/request')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  assignRequest(requestId, mechId) {
+    var data
+    return new Promise(resolve => {
+      this.http.put(this.baseURL+'/assign/'+ requestId +'/'+mechId+'/request',data)       
         .map(res => res.json())
         .subscribe(data => {
           this.data = data;
@@ -138,7 +150,6 @@ export class AirconeService {
   }
 
   approveRequest(request) {
-    if (request.status == "ORDER_DECLINED") {
       return new Promise(resolve => {
         this.http.get(this.baseURL+'/get/'+ request.id +'/approveRequest?decline='+request.decline)       
           .map(res => res.json())
@@ -147,23 +158,22 @@ export class AirconeService {
             resolve(this.data);
           })
       });
-    } else {
-      return new Promise(resolve => { 
-        this.http.get(this.baseURL+'/get/'+ request.id +'/approveRequest')       
-          .map(res => res.json())
-          .subscribe(data => {
-            this.data = data;
-            resolve(this.data);
-          })
-      });
-    }
   }
 
-  requestUpdate(request) {
-    console.log(request)
-    console.log("sdcasfceas")
-    return new Promise(resolve => { 
-      this.http.get(this.baseURL+'/get/'+ request.id +'/approveRequest?status='+request.status)       
+  declineRequest(requestId, data) {
+    return new Promise(resolve => {
+      this.http.put(this.baseURL+'/get/'+requestId+'/requestDeclined',data)       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+}
+
+  loadUsers() {
+    return new Promise(resolve => {
+      this.http.get(this.baseURL+'/user/list')       
         .map(res => res.json())
         .subscribe(data => {
           this.data = data;
@@ -172,9 +182,130 @@ export class AirconeService {
     });
   }
 
-  loadUsers() {
+  deleteUser(userId) {
     return new Promise(resolve => {
-      this.http.get(this.baseURL+'/user/list')       
+      this.http.delete(this.baseURL+'/remove/'+userId+'/user')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  userWiseFeedback() {
+    return new Promise(resolve => {
+      this.http.get(this.baseURL+'/get/getUserwiseFeedback')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  addSpare(data) {
+    return new Promise(resolve => {
+      this.http.post(this.baseURL+'/create/spare', data)       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  loadspares() {
+    return new Promise(resolve => {
+      this.http.get(this.baseURL+'/get/allspareslist')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  removespare(data) {
+    return new Promise(resolve => {
+      this.http.delete(this.baseURL+'/delete/'+data+'/onespare')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  getOneRequest(requestId) {
+    return new Promise(resolve => {
+      this.http.get(this.baseURL+'/get/'+requestId+'/oneRequest')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  addPincode(data) {
+    return new Promise(resolve => {
+      this.http.post(this.baseURL+'/create/pincode', data)       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  removePincode(data) {
+    return new Promise(resolve => {
+      this.http.delete(this.baseURL+'/remove/'+data+'/pincode')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  getAllPincodes() {
+    return new Promise(resolve => {
+      this.http.get(this.baseURL+'/get/allPincodes')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  searchSpare(serviceId, searchText) {
+    return new Promise(resolve => {
+      this.http.get(this.baseURL+'/get/'+serviceId+'/'+searchText+'/searviceSpare')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  statusWiseRequests(serviceId, searchText) {
+    return new Promise(resolve => {
+      this.http.get(this.baseURL+'/get/'+serviceId+'/'+searchText+'/allSingleStatusRequest')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  deleteUserWiseFeedback(id) {
+    return new Promise(resolve => {
+      this.http.delete(this.baseURL+'/delete/'+id+'/userFeedback')       
         .map(res => res.json())
         .subscribe(data => {
           this.data = data;
