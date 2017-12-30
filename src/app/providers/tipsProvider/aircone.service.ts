@@ -9,8 +9,8 @@ export class AirconeService {
   data;
   options;
   imageData;
-   //baseURL = "https://air-cone-backend.appspot.com"; //production
-   baseURL = "http://localhost:80"; //development
+   baseURL = "https://air-cone-backend.appspot.com"; //production
+   //baseURL = "http://localhost:80"; //development
   constructor(public http: Http, public globalservices:globalService) {
     let headers = new Headers();
     headers.append('Content-Type', 'multipart/form-data');
@@ -64,7 +64,7 @@ export class AirconeService {
   }
 
   fileUpload(file) {
-    console.log(file);
+    //console.log(file);
     let headers = new Headers();
     let formData: FormData = new FormData();
     formData.append('content', file);
@@ -72,7 +72,7 @@ export class AirconeService {
     var data:any = {
       imgbase64:file
     }
-
+    //console.log(formData)
     return new Promise(resolve => {
       // this.http.post('http://ec2-52-66-121-193.ap-south-1.compute.amazonaws.com/file/base64/upload', data)
       this.http.post('http://ec2-52-66-121-193.ap-south-1.compute.amazonaws.com/file/uploads3', formData, {
