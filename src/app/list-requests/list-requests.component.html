@@ -6,17 +6,21 @@
           </div>
           <div class="card-block">
               <div class="row">
-                  <div class="form-group col-md-2">
+                  <div class="form-group col-md-3">
                         <select name="ServiceId" class="form-control" [(ngModel)]="searchServiceId">
                             <option [ngValue]="all">All Services</option>
                             <option *ngFor="let service of services"  [ngValue]="service.id">{{service.serviceName}}</option>
                         </select>
                   </div>
-                  <div class="form-group col-md-3">
-                      <button (click)="latestRequests()" type="button" class="btn btn-default point">Latest Requests</button>
-                      <button (click)="pendingRequests()" type="button" class="btn btn-default point">Pending Requests</button>
-                      <button (click)="closedRequests()" type="button" class="btn btn-default point">Closed Requests</button>                      
-                    </div>
+                
+                      <button (click)="latestRequests()" type="button" class="btn btn-default col-md-2 Reqbtn">Latest Requests</button>
+                 
+                 
+                      <button (click)="pendingRequests()" type="button" class="btn btn-default col-md-2 Reqbtn">Pending Requests</button>
+                
+                     
+                      <button (click)="closedRequests()" type="button" class="btn btn-default col-md-2 Reqbtn">Closed Requests</button>                      
+                     
               </div>
           </div>
       </div>
@@ -48,9 +52,9 @@
                           <td data-th="Post Image">{{request.mechanicName}}</td>
                           <td data-th="Category">{{request.status}}</td>
                           <td data-th="Title"><span class="tipTitle">{{request.finalPrice}}</span></td>                          
-                          <td data-th="Actions">
+                          <td style="white-space: nowrap;" data-th="Actions">
                             <button class="btn btn-danger btn-sm point" type="button" (click)="deleteRequest(request)">Delete</button> 
-                            <button (click)="myModal.open()" (click)="getOneRequest(request)">View</button>
+                            <button class="btn btn-info btn-sm" (click)="myModal.open()" (click)="getOneRequest(request)">View</button>
 
                         </td>
                       </tr>
@@ -68,23 +72,55 @@
         <h1></h1>
     </modal-header>
     <modal-content>
+       <div class="row">
+           <div class="col-md-7">
+        <div *ngIf="userAddress">
+            <div class="form-group row">
+                <label class="col-sm-5 control-label">User Name </label>
+                <div class="col-sm-7">
+                  <p class="form-control-static"> {{userAddress.Name}}</p>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-5 control-label">User Phone   </label>
+                <div class="col-sm-7">
+                  <p class="form-control-static"> {{userAddress.Phone}}</p>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-5 control-label">User Alt Phone </label>
+                <div class="col-sm-7">
+                  <p class="form-control-static"> {{userAddress.AltPhone}}</p>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-5 control-label">User Address</label>
+                <div class="col-sm-7">
+                  <p class="form-control-static"> {{userAddress.Door}}, {{userAddress.Street}}, {{userAddress.Area}}</p>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-5 control-label">User Pincode </label>
+                <div class="col-sm-7">
+                  <p class="form-control-static">{{userAddress.Pincode}}</p>
+                </div>
+              </div>
+        </div>
+        </div>
+        <div class="col-md-5">
         <div *ngIf="Onerequest">
             <img src="{{Onerequest.serviceImage}}" width="150px"/>
             <h4>{{Onerequest.serviceName}}</h4>
         </div>
-        <div *ngIf="userAddress">
-            <p>User Name       : {{userAddress.Name}}</p>
-            <p>User Phone      :{{userAddress.Phone}}</p>
-            <p>User Alt Phone  :{{userAddress.AltPhone}}</p>
-            <p>User Address    :{{userAddress.Door}}, {{userAddress.Street}}, {{userAddress.Area}}</p>
-            <p>User Pincode    :{{userAddress.Pincode}}</p>
+        </div>
+        <div class="clearfix"></div>
         </div>
         <div class="form-group row">
             <label class="col-md-2 form-control-label">Reason for decline</label>
-            <div class="col-md-10">
+            <div class="col-md-7">
                 <input type="text" name="title" class="form-control" [(ngModel)]="Reason" placeholder="Reason" required>
             </div>
-            <button class="btn btn-danger btn-sm point" type="button" *ngIf="Onerequest" (click)="requestDecline(Onerequest)">Decline</button>                                         
+            <button class="btn btn-danger btn-sm point col-md-1" type="button" *ngIf="Onerequest" (click)="requestDecline(Onerequest)">Decline</button>                                         
         </div>
         <div class="form-group row">
             <label class="col-md-2 form-control-label">Select Mechanic</label>

@@ -13,7 +13,7 @@ export class AuthService {
   //baseURL:String = "http://ec2-52-66-121-193.ap-south-1.compute.amazonaws.com/";
 
   baseURL = "https://air-cone-backend.appspot.com"; //production
-  //baseURL = "http://localhost:80"; //development
+  // baseURL = "http://localhost:80"; //development
 
   constructor(public http: Http, public globalservices:globalService) {
     //console.log(this.baseURL);

@@ -78,7 +78,7 @@ export class ListRequestsComponent implements OnInit {
       console.log(request)
       this.airconeService.assignRequest(request.id, this.mechanicUserId)
       .then( data => {
-        this.getAllRequests()      
+        this.getAllRequests();  
       })
     } else {
       alert("select mechanic")

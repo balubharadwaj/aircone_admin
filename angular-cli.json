@@ -16,15 +16,12 @@
         "mobile": false,
         "styles": [
             "scss/style.scss",
-            "../node_modules/font-awesome/css/font-awesome.css",
-            "../node_modules/froala-editor/css/froala_editor.pkgd.min.css"
+            "../node_modules/font-awesome/css/font-awesome.css"
         ],
         "scripts": [
             "../node_modules/chart.js/dist/Chart.bundle.min.js",
             "../node_modules/chart.js/dist/Chart.min.js",
             "../node_modules/jquery/dist/jquery.min.js",
-            "../node_modules/froala-editor/js/froala_editor.pkgd.min.js",
-            "../node_modules/froala-editor/js/plugins/image.min.js",
             "../node_modules/ng2-bs3-modal/bundles/ng2-bs3-modal.js"
         ],
 

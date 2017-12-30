@@ -15,22 +15,32 @@
 
                     <div class="form-group row">
                         <label class="col-md-2 form-control-label" for="file-input">Feature Image</label>
-                        <p (click)="removeMainImage(service.image)">X</p>
-                        <div class="col-md-2"><img width="100" src="{{service.image}}" /></div>
-                        <div class="col-md-8">
+                       
+                        <div class="col-md-10">
                             <input type="file" id="fileInput" name="file-input" (change)="fileChange($event)" placeholder="Upload file" required>
                         </div>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-5">
+                         <p (click)="removeMainImage(service.image)">X</p>
+                        <div class="col-md-2"><img width="100" src="{{service.image}}" /></div>
+                        </div>
+
                     </div>
 
                     <div class="form-group row">
                             <label class="col-md-2 form-control-label" for="file-input">Slider Image</label>
-                            <div class="col-md-8">
+                            <div class="col-md-10">
                                 <input type="file" id="fileInput" name="file-input" (change)="sliderfileChange($event)" placeholder="Upload file" required>
+                                <div class="col-md-12">
+                                        <div class="col-md-2" style="height:100px; float:left;" *ngFor="let slideimg of service.slider">
+                                                <p (click)="removeSlideimg(slideimg)">X</p>
+                                                <img width="100" src={{slideimg}} >
+                                            </div>
+                                           <div class="clearfix"></div>
+                                         </div>
                             </div>
-                            <div *ngFor="let slideimg of service.slider">
-                                <p (click)="removeSlideimg(slideimg)">X</p>
-                                <img width="100" src={{slideimg}} >
-                            </div>
+                            <!-- <div class="col-md-2"></div> -->
+                           
                     </div>
 
                     <div class="form-group row">

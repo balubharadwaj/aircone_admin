@@ -10,7 +10,7 @@ export class AirconeService {
   options;
   imageData;
    baseURL = "https://air-cone-backend.appspot.com"; //production
-   //baseURL = "http://localhost:80"; //development
+  //  baseURL = "http://localhost:80"; //development
   constructor(public http: Http, public globalservices:globalService) {
     let headers = new Headers();
     headers.append('Content-Type', 'multipart/form-data');
@@ -72,6 +72,7 @@ export class AirconeService {
     var data:any = {
       imgbase64:file
     }
+    
     //console.log(formData)
     return new Promise(resolve => {
       // this.http.post('http://ec2-52-66-121-193.ap-south-1.compute.amazonaws.com/file/base64/upload', data)
