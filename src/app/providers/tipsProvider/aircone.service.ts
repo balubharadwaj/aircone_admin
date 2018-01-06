@@ -9,8 +9,8 @@ export class AirconeService {
   data;
   options;
   imageData;
-   baseURL = "https://air-cone-backend.appspot.com"; //production
-  //  baseURL = "http://localhost:80"; //development
+   //baseURL = "https://air-cone-backend.appspot.com"; //production
+    baseURL = "http://localhost:80"; //development
   constructor(public http: Http, public globalservices:globalService) {
     let headers = new Headers();
     headers.append('Content-Type', 'multipart/form-data');
@@ -161,9 +161,9 @@ export class AirconeService {
       });
   }
 
-  declineRequest(requestId, data) {
+  declineRequest(requestId, userId, data) {
     return new Promise(resolve => {
-      this.http.put(this.baseURL+'/get/'+requestId+'/requestDeclined',data)       
+      this.http.put(this.baseURL+'/get/'+requestId+'/'+userId+'/requestDeclined',data)       
         .map(res => res.json())
         .subscribe(data => {
           this.data = data;

@@ -62,7 +62,21 @@
                             <span style="content: \002B; width: 20px" (click)="subserviceadd(service.onesubservice)">&#8853;</span>
                             <div class="col-md-2">
                                 <label *ngFor="let listservice of service.subService">
-                                    {{listservice}} <span (click)="subserviceremove(listservice)">X</span>
+                                    {{listservice.subServiceName}} <span (click)="subserviceremove(listservice)">X</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label class="col-md-2 form-control-label">Add Type</label>
+                        <div class="col-md-2" row>
+                            <input type="text" name="servicetype" class="form-control" [(ngModel)]="service.oneservicetype" placeholder="Service">
+                            <span style="content: \002B; width: 20px" (click)="typeadd(service.oneservicetype)">&#8853;</span>
+                            <div class="col-md-2">
+                                <label *ngFor="let type of service.servicetype">
+                                    {{type}} <span (click)="typeremove(type)">X</span>
                                 </label>
                             </div>
                         </div>

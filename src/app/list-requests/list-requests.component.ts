@@ -74,8 +74,6 @@ export class ListRequestsComponent implements OnInit {
 
   assignRequest(request) {
     if (this.mechanicUserId) {
-      console.log(this.mechanicUserId)
-      console.log(request)
       this.airconeService.assignRequest(request.id, this.mechanicUserId)
       .then( data => {
         this.getAllRequests();  
@@ -86,7 +84,8 @@ export class ListRequestsComponent implements OnInit {
   }
 
   requestDecline(request) {
-    this.airconeService.declineRequest(request.id, this.Reason)
+    var reason = {reason: this.Reason}
+    this.airconeService.declineRequest(request.id, request.userId, reason)
     .then( data => {
       this.getAllRequests()
    })
