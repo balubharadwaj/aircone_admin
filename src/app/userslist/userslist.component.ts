@@ -32,6 +32,18 @@ export class UserslistComponent implements OnInit {
     })
   }
 
+  inActiveUser(user) {
+    this.airconeService.inActiveUser(user.id)
+    .then( data => {
+    })
+  }
+
+  activeUser(user) {
+    this.airconeService.activeUser(user.id)
+    .then( data => {
+    })
+  }
+
   pagination(i,p){    
     return ((Number(this.curPage)- 1)*this.itemsPPage)+i+1;
   }

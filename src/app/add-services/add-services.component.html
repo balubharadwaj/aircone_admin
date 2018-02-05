@@ -3,6 +3,7 @@
         <div class="card">
             <div class="card-header">
                 <strong>New Service</strong>
+                <button class="btn btn-info btn-sm point" type="button" *ngIf="updatetrue" [routerLink]="['/SubServices',serviceId]">Add Service Rates</button>                                                                             
             </div>
             <div class="card-block loadingOuter">
                 <form class="form-horizontal" name="serviceForm" (ngSubmit)="submitButton()" #f="ngForm" novalidate>
@@ -43,6 +44,17 @@
                            
                     </div>
 
+                    <div class="form-group row">
+                        <label class="col-md-2 form-control-label" for="file-input">Price Chart Image</label>
+                        <div class="col-md-8">
+                            <input type="file" id="fileInput" name="file-input" (change)="pricefileChange($event)" placeholder="Upload file" required>
+                        </div>
+                        <div *ngFor="let priceimg of service.priceChart">
+                            <p (click)="removePriceimg(priceimg)">X</p>
+                            <img width="100" src={{priceimg}} >
+                        </div>
+                    </div>
+
 
                     <div class="form-group row">
                         <label class="col-md-2 form-control-label">Add Sub Service</label>
@@ -51,7 +63,21 @@
                             <span style="content: \002B; width: 20px" (click)="subserviceadd(service.onesubservice)">&#8853;</span>
                             <div class="col-md-2">
                                 <label *ngFor="let listservice of service.subService">
-                                    {{listservice}} <span (click)="subserviceremove(listservice)">X</span>
+                                    {{listservice.subServiceName}} <span (click)="subserviceremove(listservice)">X</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label class="col-md-2 form-control-label">Add Type</label>
+                        <div class="col-md-2" row>
+                            <input type="text" name="servicetype" class="form-control" [(ngModel)]="service.oneservicetype" placeholder="Service">
+                            <span style="content: \002B; width: 20px" (click)="typeadd(service.oneservicetype)">&#8853;</span>
+                            <div class="col-md-2">
+                                <label *ngFor="let type of service.servicetype">
+                                    {{type}} <span (click)="typeremove(type)">X</span>
                                 </label>
                             </div>
                         </div>
@@ -62,9 +88,9 @@
                       <div class="col-md-10">
                           <input type="text" name="description" class="form-control" [(ngModel)]="service.description" placeholder="Description" required>
                       </div>
-                  </div>
+                    </div>
 
-                  <div class="form-group row">
+                    <div class="form-group row">
                         <label class="col-md-2 form-control-label">Service Note</label>
                         <div class="col-md-10">
                             <input type="text" name="note" class="form-control" [(ngModel)]="service.note" placeholder="Note">
