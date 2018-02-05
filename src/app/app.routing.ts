@@ -33,7 +33,7 @@ export const routes: Routes = [
         loadChildren: './services/services.module#servicesModule'
       },
       {
-        path: 'SubServices',
+        path: 'SubServices/:serviceId',
         loadChildren: './add-subservices/add-subservices.module#subServiceListModule'
       },
       {

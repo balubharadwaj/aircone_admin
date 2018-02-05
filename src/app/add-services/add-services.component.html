@@ -3,6 +3,7 @@
         <div class="card">
             <div class="card-header">
                 <strong>New Service</strong>
+                <button class="btn btn-info btn-sm point" type="button" *ngIf="updatetrue" [routerLink]="['/SubServices',serviceId]">Add Service Rates</button>                                                                             
             </div>
             <div class="card-block loadingOuter">
                 <form class="form-horizontal" name="serviceForm" (ngSubmit)="submitButton()" #f="ngForm" novalidate>
@@ -52,7 +53,7 @@
                             <p (click)="removePriceimg(priceimg)">X</p>
                             <img width="100" src={{priceimg}} >
                         </div>
-                </div>
+                    </div>
 
 
                     <div class="form-group row">
@@ -87,9 +88,9 @@
                       <div class="col-md-10">
                           <input type="text" name="description" class="form-control" [(ngModel)]="service.description" placeholder="Description" required>
                       </div>
-                  </div>
+                    </div>
 
-                  <div class="form-group row">
+                    <div class="form-group row">
                         <label class="col-md-2 form-control-label">Service Note</label>
                         <div class="col-md-10">
                             <input type="text" name="note" class="form-control" [(ngModel)]="service.note" placeholder="Note">

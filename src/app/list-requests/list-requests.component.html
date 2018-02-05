@@ -6,7 +6,7 @@
           </div>
           <div class="card-block">
               <div class="row">
-                  <div class="form-group col-md-3">
+                  <div class="form-group col-md-2">
                         <select name="ServiceId" class="form-control" [(ngModel)]="searchServiceId">
                             <option [ngValue]="all">All Services</option>
                             <option *ngFor="let service of services"  [ngValue]="service.id">{{service.serviceName}}</option>
@@ -20,6 +20,13 @@
                 
                      
                       <button (click)="closedRequests()" type="button" class="btn btn-default col-md-2 Reqbtn">Closed Requests</button>                      
+
+
+                      <button (click)="inActivatedRequests()" type="button" class="btn btn-default col-md-2 Reqbtn">Inactivated Requests</button>                      
+                      
+
+                      <button (click)="getAllRequests()" type="button" class="btn btn-default col-md-2 Reqbtn">All Requests</button>                      
+                      
                      
               </div>
           </div>
@@ -53,7 +60,7 @@
                           <td data-th="Category">{{request.status}}</td>
                           <td data-th="Title"><span class="tipTitle">{{request.finalPrice}}</span></td>                          
                           <td style="white-space: nowrap;" data-th="Actions">
-                            <button class="btn btn-danger btn-sm point" type="button" (click)="deleteRequest(request)">Delete</button> 
+                            <button class="btn btn-danger btn-sm point" type="button" *ngIf="request.adminStatus != 'INACTIVE'" (click)="inActiveRequest(request)">InActive</button> 
                             <button class="btn btn-info btn-sm" (click)="myModal.open()" (click)="getOneRequest(request)">View</button>
 
                         </td>
@@ -105,12 +112,34 @@
                   <p class="form-control-static">{{userAddress.Pincode}}</p>
                 </div>
               </div>
+              <div class="form-group row" *ngIf="Onerequest.referredBy">
+                <label class="col-sm-5 control-label">Reffered By </label>
+                <div class="col-sm-7">
+                  <p class="form-control-static">{{Onerequest.referredBy}}</p>
+                </div>
+                <div class="col-sm-7">
+                    <p class="form-control-static">{{Onerequest.referralmechName}}</p>
+                </div>
+                <button class="btn btn-danger btn-sm point" *ngIf="Onerequest" type="button" (click)="assignRequestForReferralMech(Onerequest, Onerequest.referralmechId)">assign</button>                             
+              </div>
         </div>
         </div>
         <div class="col-md-5">
         <div *ngIf="Onerequest">
             <img src="{{Onerequest.serviceImage}}" width="150px"/>
             <h4>{{Onerequest.serviceName}}</h4>
+            <div *ngFor="let type of Onerequest.request.Type">
+                {{type.type}} {{type.ton}} {{type.quantity}}
+            </div>
+            <div>
+                <b>Total service Prive</b>: <span>{{Onerequest.finalPrice}}</span>
+            </div>
+            <div *ngIf="Onerequest.serviceQuantityInfo">
+                <b>Service Info</b>: <p>{{Onerequest.serviceQuantityInfo.name}}, {{Onerequest.serviceQuantityInfo.type}}, {{Onerequest.serviceQuantityInfo.Price}}</p>
+            </div>
+            <div>
+                <b>Service Spare Info</b>: <p *ngFor="let spare of Onerequest.spareInfo">{{spare.sparename}}, {{spare.sparerate*spare.rate}}</p>
+            </div>
         </div>
         </div>
         <div class="clearfix"></div>
@@ -132,7 +161,7 @@
                     </ng-container>                     
                 </select>
             </div> 
-            <button class="btn btn-danger btn-sm point" *ngIf="Onerequest" type="button" (click)="assignRequest(Onerequest)">assign</button>             
+            <button class="btn btn-danger btn-sm point" *ngIf="Onerequest" type="button" (click)="assignRequest(Onerequest); myModal.close()">assign</button>             
         </div>
         <button class="btn btn-primary" (click)="myModal.close()">close</button>
         

@@ -36,7 +36,7 @@ export class MechanicsComponent implements OnInit {
       else {     
         console.log(this.user);
         this.user = {};
-        validVal.resetForm();
+        // validVal.resetForm();
         this.createdAccount();
       }
     });

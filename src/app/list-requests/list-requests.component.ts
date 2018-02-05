@@ -43,7 +43,7 @@ export class ListRequestsComponent implements OnInit {
   }
 
   getAllRequests() {
-    this.airconeService.getAllRequests()
+    this.airconeService.getAllRequests(this.searchServiceId)
     .then( data => {
       this.requests = data;
     })
@@ -72,6 +72,13 @@ export class ListRequestsComponent implements OnInit {
     })
   }
 
+  inActiveRequest(request) {
+    this.airconeService.inActiveRequest(request.id)
+    .then( data => {
+      this.getAllRequests()      
+    })
+  }
+
   assignRequest(request) {
     if (this.mechanicUserId) {
       this.airconeService.assignRequest(request.id, this.mechanicUserId)
@@ -83,6 +90,12 @@ export class ListRequestsComponent implements OnInit {
     }
   }
 
+  assignRequestForReferralMech(request, referralmechId){
+  this.airconeService.assignRequest(request.id, referralmechId)
+  .then( data => {
+    this.getAllRequests();  
+  })
+ }
   requestDecline(request) {
     var reason = {reason: this.Reason}
     this.airconeService.declineRequest(request.id, request.userId, reason)
@@ -115,7 +128,7 @@ export class ListRequestsComponent implements OnInit {
     this.searchServiceId;
     this.airconeService.statusWiseRequests(this.searchServiceId, searchString)
     .then( data => {
-     this.requests = data;      
+     this.requests = data;    
     })
   }
 
@@ -123,6 +136,13 @@ export class ListRequestsComponent implements OnInit {
     var searchString = 'ORDER_CLOSED';
     this.searchServiceId;
     this.airconeService.statusWiseRequests(this.searchServiceId, searchString)
+    .then( data => {
+     this.requests = data;      
+    })
+  }
+
+  inActivatedRequests() {
+    this.airconeService.inActivatedRequests()
     .then( data => {
      this.requests = data;      
     })
