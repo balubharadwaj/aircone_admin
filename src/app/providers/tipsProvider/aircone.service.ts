@@ -283,6 +283,17 @@ export class AirconeService {
     });
   }
 
+  updateSpare(data) {
+    return new Promise(resolve => {
+      this.http.put(this.baseURL+'/get/sparePartsUpdate', data)       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
   loadspares() {
     return new Promise(resolve => {
       this.http.get(this.baseURL+'/get/allspareslist')       
