@@ -22,9 +22,11 @@
                           <td data-th="Image"><img width="50" [src]="service.image"></td>
                           <td data-th="Title"><span class="categoryTitle">{{service.serviceName}}</span></td>
                           <td data-th="Description"><span class="categoryTitle">{{service.description}}</span></td>
-                          <td data-th="Actions">
-                            <button class="btn btn-danger btn-sm point" type="button" (click)="removeService(service)">Delete</button>    
-                            <button class="btn btn-sm point" type="button" [routerLink]="['/AddServices',service.id]">Edit</button>                                                             
+                          <td style="white-space: nowrap;"  data-th="Actions">
+                            <button class="btn btn-danger btn-sm point" type="button" *ngIf="service.status == 'INACTIVE'" (click)="ActiveService(service)">ACTIVE</button>    
+                            <button class="btn btn-danger btn-sm point" type="button" *ngIf="service.status == 'ACTIVE'" (click)="inActiveService(service)">IN ACTIVE</button>    
+                            
+                            <button class="btn btn-info btn-sm point" type="button" [routerLink]="['/AddServices',service.id]">Edit</button>                                                             
                           </td>
                           <td data-th="Created Date"><span class="categoryTitle">{{service.createdAt}}</span></td>
                           

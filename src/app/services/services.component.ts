@@ -23,8 +23,17 @@ export class ServicesComponent implements OnInit {
     });
   }
 
-  removeService(service) {
-    this.airconeService.deleteService(service.id)
+  inActiveService(service) {
+    this.airconeService.inActiveService(service.id)
+    .then( data => {
+      this.loadServices()
+    }, err => {
+      console.log(err)
+    })
+  }
+
+  ActiveService(service) {
+    this.airconeService.ActiveService(service.id)
     .then( data => {
       this.loadServices()
     }, err => {

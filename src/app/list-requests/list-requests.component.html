@@ -1,65 +1,76 @@
 <div class="row">
-  <div class="col-lg-12">
-      <div class="card">
-          <div class="card-header">
-              <i class="fa fa-align-justify"></i> Search
-          </div>
-          <div class="card-block">
-              <div class="row">
-                  <div class="form-group col-md-2">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i> Search
+            </div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="form-group col-md-3">
                         <select name="ServiceId" class="form-control" [(ngModel)]="searchServiceId">
                             <option [ngValue]="all">All Services</option>
                             <option *ngFor="let service of services"  [ngValue]="service.id">{{service.serviceName}}</option>
                         </select>
-                  </div>
-                  <div class="form-group col-md-3">
-                      <button (click)="latestRequests()" type="button" class="btn btn-default point">Latest Requests</button>
-                      <button (click)="pendingRequests()" type="button" class="btn btn-default point">Pending Requests</button>
-                      <button (click)="closedRequests()" type="button" class="btn btn-default point">Closed Requests</button>                      
                     </div>
-              </div>
-          </div>
-      </div>
-      
-      <div class="card">
-          <div class="card-header">
-              <i class="fa fa-align-justify"></i> List of All Vendor Tips
-          </div>
-          <div class="card-block">
-              <table class="rwd-table table table-bordered table-striped table-condensed">
-                  <thead>
-                      <tr>
-                          <th>Index</th>
-                          <th>User Name</th>
-                          <th>Service Name</th>                         
-                          <th>Mechanic Name</th>
-                          <th>Status</th>
-                          <th>Service Price</th>
-                          <th class="gender">Actions</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                
-                      <tr *ngFor="let request of requests  | paginate: { itemsPerPage: itemsPPage, currentPage: curPage };let i = index" [attr.data-index]="i">
-                          <!-- <td data-th="Index">{{pagination(i,curPage)}}</td> -->
-                          <td data-th="Vendor Name">{{request.id}}</td>
-                          <td data-th="Post Image">{{request.userId}}</td>
-                          <td data-th="Title"><span class="tipTitle">{{request.serviceName}}</span></td>
-                          <td data-th="Post Image">{{request.mechanicName}}</td>
-                          <td data-th="Category">{{request.status}}</td>
-                          <td data-th="Title"><span class="tipTitle">{{request.finalPrice}}</span></td>                          
-                          <td data-th="Actions">
-                            <button class="btn btn-danger btn-sm point" type="button" (click)="deleteRequest(request)">Delete</button> 
-                            <button (click)="myModal.open()" (click)="getOneRequest(request)">View</button>
+                    <div class="form-group col-md-3">
+                        <button (click)="latestRequests()" type="button" class="btn btn-default Reqbtn">Latest Requests</button>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <button (click)="pendingRequests()" type="button" class="btn btn-default Reqbtn">Pending Requests</button>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <button (click)="closedRequests()" type="button" class="btn btn-default Reqbtn">Closed Requests</button>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <button (click)="inActivatedRequests()" type="button" class="btn btn-default Reqbtn">Inactivated Requests</button>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <button (click)="getAllRequests()" type="button" class="btn btn-default Reqbtn">All Requests</button>
+                    </div>
 
-                        </td>
-                      </tr>
-                  </tbody>
-              </table>
-              <pagination-controls (pageChange)="changePage($event)" autoHide="true" previousLabel="" nextLabel=""></pagination-controls>
-          </div>
-      </div>
-  </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i> List of All Vendor Tips
+            </div>
+            <div class="card-block">
+                <table class="rwd-table table table-bordered table-striped table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Index</th>
+                            <th>User Name</th>
+                            <th>Service Name</th>
+                            <th>Mechanic Name</th>
+                            <th>Status</th>
+                            <th>Service Price</th>
+                            <th class="gender">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="let request of requests  | paginate: { itemsPerPage: itemsPPage, currentPage: curPage };let i = index" [attr.data-index]="i">
+                            <!-- <td data-th="Index">{{pagination(i,curPage)}}</td> -->
+                            <td data-th="Vendor Name">{{request.id}}</td>
+                            <td data-th="Post Image">{{request.userId}}</td>
+                            <td data-th="Title"><span class="tipTitle">{{request.serviceName}}</span></td>
+                            <td data-th="Post Image">{{request.mechanicName}}</td>
+                            <td data-th="Category">{{request.status}}</td>
+                            <td data-th="Title"><span class="tipTitle">{{request.finalPrice}}</span></td>
+                            <td style="white-space: nowrap;" data-th="Actions">
+                                <button class="btn btn-danger btn-sm point" type="button" *ngIf="request.adminStatus != 'INACTIVE'" (click)="inActiveRequest(request)">InActive</button>
+                                <button class="btn btn-info btn-sm" (click)="myModal.open()" (click)="getOneRequest(request)">View</button>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pagination-controls (pageChange)="changePage($event)" autoHide="true" previousLabel="" nextLabel=""></pagination-controls>
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -68,23 +79,79 @@
         <h1></h1>
     </modal-header>
     <modal-content>
-        <div *ngIf="Onerequest">
-            <img src="{{Onerequest.serviceImage}}" width="150px"/>
-            <h4>{{Onerequest.serviceName}}</h4>
-        </div>
-        <div *ngIf="userAddress">
-            <p>User Name       : {{userAddress.Name}}</p>
-            <p>User Phone      :{{userAddress.Phone}}</p>
-            <p>User Alt Phone  :{{userAddress.AltPhone}}</p>
-            <p>User Address    :{{userAddress.Door}}, {{userAddress.Street}}, {{userAddress.Area}}</p>
-            <p>User Pincode    :{{userAddress.Pincode}}</p>
+        <div class="row">
+            <div class="col-md-7">
+                <div *ngIf="userAddress">
+                    <div class="form-group row">
+                        <label class="col-sm-5 control-label">User Name </label>
+                        <div class="col-sm-7">
+                            <p class="form-control-static"> {{userAddress.Name}}</p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-5 control-label">User Phone   </label>
+                        <div class="col-sm-7">
+                            <p class="form-control-static"> {{userAddress.Phone}}</p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-5 control-label">User Alt Phone </label>
+                        <div class="col-sm-7">
+                            <p class="form-control-static"> {{userAddress.AltPhone}}</p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-5 control-label">User Address</label>
+                        <div class="col-sm-7">
+                            <p class="form-control-static"> {{userAddress.Door}}, {{userAddress.Street}}, {{userAddress.Area}}</p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-5 control-label">User Pincode </label>
+                        <div class="col-sm-7">
+                            <p class="form-control-static">{{userAddress.Pincode}}</p>
+                        </div>
+                    </div>
+                    <div class="form-group row" *ngIf="Onerequest.referredBy">
+                        <label class="col-sm-5 control-label">Reffered By </label>
+                        <div class="col-sm-7">
+                            <p class="form-control-static">{{Onerequest.referredBy}}</p>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="form-control-static">{{Onerequest.referralmechName}}</p>
+                        </div>
+                        <button class="btn btn-danger btn-sm point" *ngIf="Onerequest" type="button" (click)="assignRequestForReferralMech(Onerequest, Onerequest.referralmechId)">assign</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div *ngIf="Onerequest">
+                    <img src="{{Onerequest.serviceImage}}" width="150px" />
+                    <h4>{{Onerequest.serviceName}}</h4>
+                    <div *ngFor="let type of Onerequest.request.Type">
+                        {{type.type}} {{type.ton}} {{type.quantity}}
+                    </div>
+                    <div>
+                        <b>Total service Prive</b>: <span>{{Onerequest.finalPrice}}</span>
+                    </div>
+                    <div *ngIf="Onerequest.serviceQuantityInfo">
+                        <b>Service Info</b>:
+                        <p>{{Onerequest.serviceQuantityInfo.name}}, {{Onerequest.serviceQuantityInfo.type}}, {{Onerequest.serviceQuantityInfo.Price}}</p>
+                    </div>
+                    <div>
+                        <b>Service Spare Info</b>:
+                        <p *ngFor="let spare of Onerequest.spareInfo">{{spare.sparename}}, {{spare.sparerate*spare.rate}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
         </div>
         <div class="form-group row">
             <label class="col-md-2 form-control-label">Reason for decline</label>
-            <div class="col-md-10">
+            <div class="col-md-7">
                 <input type="text" name="title" class="form-control" [(ngModel)]="Reason" placeholder="Reason" required>
             </div>
-            <button class="btn btn-danger btn-sm point" type="button" *ngIf="Onerequest" (click)="requestDecline(Onerequest)">Decline</button>                                         
+            <button class="btn btn-danger btn-sm point col-md-1" type="button" *ngIf="Onerequest" (click)="requestDecline(Onerequest)">Decline</button>
         </div>
         <div class="form-group row">
             <label class="col-md-2 form-control-label">Select Mechanic</label>
@@ -95,11 +162,11 @@
                         <option *ngIf="user.role[0] == 'MECHANIC'"  [ngValue]="user.id" >{{user.firstName}}</option> 
                     </ng-container>                     
                 </select>
-            </div> 
-            <button class="btn btn-danger btn-sm point" *ngIf="Onerequest" type="button" (click)="assignRequest(Onerequest)">assign</button>             
+            </div>
+            <button class="btn btn-danger btn-sm point" *ngIf="Onerequest" type="button" (click)="assignRequest(Onerequest); myModal.close()">assign</button>
         </div>
         <button class="btn btn-primary" (click)="myModal.close()">close</button>
-        
+
 
     </modal-content>
     <modal-footer>

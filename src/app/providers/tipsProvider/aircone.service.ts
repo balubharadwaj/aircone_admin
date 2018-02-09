@@ -11,6 +11,7 @@ export class AirconeService {
   imageData;
    baseURL = "https://air-cone-backend.appspot.com"; //production
   //  baseURL = "http://localhost:80"; //development
+  
   constructor(public http: Http, public globalservices:globalService) {
     let headers = new Headers();
     headers.append('Content-Type', 'multipart/form-data');
@@ -20,7 +21,7 @@ export class AirconeService {
 
    loadServices() {
     return new Promise(resolve => {
-      this.http.get(this.baseURL+'/service/getAllSerive')
+      this.http.get(this.baseURL+'/service/getAllServicesForAdmin')
         .map(res => res.json())
         .subscribe(data => {
           this.data = data;
@@ -52,7 +53,6 @@ export class AirconeService {
   }
 
   addSubService(data) {
-    console.log(data)
     return new Promise(resolve => {
       this.http.post(this.baseURL+'/service/'+ data.Serviceid+'/createSubService', data)
       .map(res => res.json())
@@ -64,7 +64,7 @@ export class AirconeService {
   }
 
   fileUpload(file) {
-    console.log(file);
+    //console.log(file);
     let headers = new Headers();
     let formData: FormData = new FormData();
     formData.append('content', file);
@@ -72,7 +72,8 @@ export class AirconeService {
     var data:any = {
       imgbase64:file
     }
-
+    
+    //console.log(formData)
     return new Promise(resolve => {
       // this.http.post('http://ec2-52-66-121-193.ap-south-1.compute.amazonaws.com/file/base64/upload', data)
       this.http.post('http://ec2-52-66-121-193.ap-south-1.compute.amazonaws.com/file/uploads3', formData, {
@@ -87,10 +88,10 @@ export class AirconeService {
     });
   }
 
-  deleteService(serviceId) {
+  inActiveService(serviceId) {
     return new Promise(resolve => {
       // this.http.post('http://ec2-52-66-121-193.ap-south-1.compute.amazonaws.com/file/base64/upload', data)
-      this.http.delete(this.baseURL+'/service/'+serviceId+'/deleteService')       
+      this.http.get(this.baseURL+'/service/'+serviceId+'/inActiveService')       
         .map(res => res.json())
         .subscribe(data => {
           // console.log(data)
@@ -100,10 +101,23 @@ export class AirconeService {
     });
   }
 
-  getAllRequests() {
+  ActiveService(serviceId) {
     return new Promise(resolve => {
       // this.http.post('http://ec2-52-66-121-193.ap-south-1.compute.amazonaws.com/file/base64/upload', data)
-      this.http.get(this.baseURL+'/get/allRequest')       
+      this.http.get(this.baseURL+'/service/'+serviceId+'/makeActiveService')       
+        .map(res => res.json())
+        .subscribe(data => {
+          // console.log(data)
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  getAllRequests(searchServiceId) {
+    return new Promise(resolve => {
+      // this.http.post('http://ec2-52-66-121-193.ap-south-1.compute.amazonaws.com/file/base64/upload', data)
+      this.http.get(this.baseURL+'/get/allRequest?serviceStatus='+searchServiceId)       
         .map(res => res.json())
         .subscribe(data => {
           // console.log(data)
@@ -126,9 +140,42 @@ export class AirconeService {
     });
   }
 
+  addServicePrice(serviceId, data) {
+    return new Promise(resolve => {
+      this.http.post(this.baseURL+'/service/'+serviceId+'/add/subservicePrice', data)       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  removeTypePrice(serviceId, type) {
+    return new Promise(resolve => {
+      this.http.get(this.baseURL+'/service/'+serviceId+'/'+type+'/subservicePrice')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
   deleteRequest(requestId) {
     return new Promise(resolve => {
       this.http.delete(this.baseURL+'/delete/'+ requestId +'/request')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  inActiveRequest(requestId) {
+    return new Promise(resolve => {
+      this.http.get(this.baseURL+'/request/'+ requestId +'/inactive')       
         .map(res => res.json())
         .subscribe(data => {
           this.data = data;
@@ -160,9 +207,9 @@ export class AirconeService {
       });
   }
 
-  declineRequest(requestId, data) {
+  declineRequest(requestId, userId, data) {
     return new Promise(resolve => {
-      this.http.put(this.baseURL+'/get/'+requestId+'/requestDeclined',data)       
+      this.http.put(this.baseURL+'/get/'+requestId+'/'+userId+'/requestDeclined',data)       
         .map(res => res.json())
         .subscribe(data => {
           this.data = data;
@@ -185,6 +232,28 @@ export class AirconeService {
   deleteUser(userId) {
     return new Promise(resolve => {
       this.http.delete(this.baseURL+'/remove/'+userId+'/user')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  activeUser(userId) {
+    return new Promise(resolve => {
+      this.http.delete(this.baseURL+'/user/'+userId+'/active')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  inActiveUser(userId) {
+    return new Promise(resolve => {
+      this.http.delete(this.baseURL+'/user/'+userId+'/inactive')       
         .map(res => res.json())
         .subscribe(data => {
           this.data = data;
@@ -295,6 +364,17 @@ export class AirconeService {
   statusWiseRequests(serviceId, searchText) {
     return new Promise(resolve => {
       this.http.get(this.baseURL+'/get/'+serviceId+'/'+searchText+'/allSingleStatusRequest')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  inActivatedRequests() {
+    return new Promise(resolve => {
+      this.http.get(this.baseURL+'/get/allinActiveRequest')       
         .map(res => res.json())
         .subscribe(data => {
           this.data = data;

@@ -1,6 +1,6 @@
 <header class="app-header navbar">
     <button class="navbar-toggler mobile-sidebar-toggler hidden-lg-up" type="button">&#9776;</button>
-    <a class="logoHead" [routerLink]="[ '/ListRequests/1/']"> <img src="assets/img/logo.png"></a>
+    <a class="logoHead" [routerLink]="[ '/ListRequests/1/']"> <img class="headlogo" src="assets/img/logo.png"></a>
 
     <ul class="nav navbar-nav hidden-md-down">
         <li class="nav-item">
@@ -9,8 +9,6 @@
 
     </ul>
     <ul class="nav navbar-nav ml-auto">
-
-
         <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void()" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle>
 
@@ -103,9 +101,9 @@
                             <a class="nav-link mobile-sidebar-toggler" routerLinkActive="active " [routerLink]="[ '/SpareParts'] "><i class="icon-plus "></i>  Add SpareParts </a>
                         </li>
 
-                        <li class="nav-item ">
+                        <!-- <li class="nav-item ">
                             <a class="nav-link mobile-sidebar-toggler" routerLinkActive="active " [routerLink]="[ '/SubServices'] "><i class="icon-plus "></i>  Add Sub Services </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item ">
                             <a class="nav-link mobile-sidebar-toggler" routerLinkActive="active " [routerLink]="[ '/Pincode'] "><i class="icon-plus "></i>  Add/List Pincode </a>
                         </li>
@@ -221,7 +219,7 @@
 
         </ol>
 
-        <div class="container-fluid ">
+        <div class="container">
             <router-outlet></router-outlet>
         </div>
         <!-- /.conainer-fluid -->

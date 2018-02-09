@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AddServicesComponent implements OnInit {
 
-  public service: any = {image:'', slider:[], serviceName:'', description:'', note:'', subService:[]};
+  public service: any = {image:'', slider:[], priceChart:[], serviceName:'', description:'', note:'', servicetype:[], subService:[]};
   private serviceId: any;
   updatetrue: boolean = false;
   subServices = [];
@@ -30,12 +30,27 @@ export class AddServicesComponent implements OnInit {
 
 
   subserviceadd(oneSubService) {
-    this.service.subService.push(oneSubService)
+    if(oneSubService){
+  this.service.subService.push({subServiceName: oneSubService})
     this.service.onesubservice = ''
+    }
+  
+  }
+
+  typeadd(onetype) {
+    if(onetype){
+this.service.servicetype.push(onetype)
+    this.service.oneservicetype = ''
+    }
+    
   }
 
   subserviceremove(oneSubService) {
     this.service.subService.splice(this.service.subService.indexOf(oneSubService),1)
+  }
+
+  typeremove(onetype) {
+    this.service.servicetype.splice(this.service.servicetype.indexOf(onetype),1)
   }
 
   getOneService() {
@@ -49,6 +64,10 @@ export class AddServicesComponent implements OnInit {
     this.service.slider.splice(this.service.slider.indexOf(slideimg), 1)
   }
 
+  removePriceimg(priceimg) {
+    this.service.priceChart.splice(this.service.priceChart.indexOf(priceimg), 1)
+  }
+
   removeMainImage(image) {
     delete this.service.image
   }
@@ -57,6 +76,7 @@ export class AddServicesComponent implements OnInit {
   myfile: any;
   fileChange(fileinput: any) {
     this.myfile = fileinput.target.files[0];
+    console.log(this.myfile)
     this.airconeService.fileUpload(this.myfile)
     .then(data => {
       this.service.image = '';
@@ -78,6 +98,17 @@ export class AddServicesComponent implements OnInit {
     });
   }
 
+  pricefileChange(fileinput: any) {
+    this.myfile = fileinput.target.files[0];
+    this.airconeService.fileUpload(this.myfile)
+    .then(data => {
+      this.service.priceChart.push(data['files'][0].url);
+    },
+  err => {
+    console.log(err);
+    });
+  }
+
   saveService() {
     console.log(this.service)
     if (this.updatetrue) {
@@ -91,6 +122,7 @@ export class AddServicesComponent implements OnInit {
           this.service.description = '';
           this.service.note = '';
           this.service.slider = [];
+          this.service.priceChart = [];
         }, err => {
           console.log(err)
         }) 
@@ -113,6 +145,7 @@ export class AddServicesComponent implements OnInit {
           this.service.description = '';
           this.service.note = '';
           this.service.slider = [];
+          this.service.priceChart = [];
         }, err => {
           console.log(err)
         }) 
