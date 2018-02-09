@@ -30,13 +30,19 @@ export class AddServicesComponent implements OnInit {
 
 
   subserviceadd(oneSubService) {
-    this.service.subService.push({subServiceName: oneSubService})
+    if(oneSubService){
+  this.service.subService.push({subServiceName: oneSubService})
     this.service.onesubservice = ''
+    }
+  
   }
 
   typeadd(onetype) {
-    this.service.servicetype.push(onetype)
+    if(onetype){
+this.service.servicetype.push(onetype)
     this.service.oneservicetype = ''
+    }
+    
   }
 
   subserviceremove(oneSubService) {

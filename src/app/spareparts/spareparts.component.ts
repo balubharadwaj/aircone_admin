@@ -12,6 +12,7 @@ export class SparepartsComponent implements OnInit {
     spares;
     searchText;
     searchService;
+    editSpare: boolean = false;
 
   constructor(public airconeService: AirconeService, public router: Router) {
     this.loadServices()
@@ -20,6 +21,20 @@ export class SparepartsComponent implements OnInit {
    }
 
   ngOnInit() {
+  }
+
+  sparepartsedit(spare) {
+    this.spareparts = spare
+    this.editSpare = true;
+  }
+
+  sparepartsupdate(spareupdate) {
+    this.airconeService.updateSpare(spareupdate)
+    .then(data => {     
+      this.listspares();
+      this.spareparts = {};
+      this.editSpare = false;
+    });
   }
 
   searchTips(searchText) {
@@ -55,7 +70,7 @@ export class SparepartsComponent implements OnInit {
     this.airconeService.removespare(spare.id)
     .then(data => {     
       this.spares.splice(this.spares.indexOf(spare.id), 1)
-      //this.listspares();
+      this.listspares();
     });
   }
 
