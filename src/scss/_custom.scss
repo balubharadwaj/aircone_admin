@@ -15,6 +15,10 @@
     }
 }
 
+.headlogo {
+    width: 60px;
+}
+
 .ngx-pagination {
     padding-left: 0px;
     .current {
@@ -182,10 +186,73 @@ modal-title {
 }
 
 .btn.btn-default {
-    width: calc(50% - 10px);
+    width: 100%;
     padding: 10px;
 }
 
+.serviceImg {
+    position: relative;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    margin: 20px 10px;
+    float: left;
+    min-height: 120px;
+}
+
+.btnMargin {
+    margin-top: 10px;
+}
+
+.addItem {
+    position: relative;
+}
+
+.add {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 50%;
+    right: -10px;
+    top: 7px;
+    background: #1c34ec;
+    color: #fff;
+    cursor: pointer;
+}
+
+.removeicon {
+    cursor: pointer;
+    background: #ea0a0a;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border-radius: 50%;
+    color: #fff;
+    font-weight: 700;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    display: inline-block;
+}
+
+.addservice {
+    margin-top: 20px;
+    .removeicon {
+        position: inherit;
+    }
+}
+
+// .tableAuto {
+//     table {
+//         width: auto;
+//     }
+// }
 // @import "compass/css3";
 // More practical CSS...
 // using mobile first method (IE8,7 requires respond.js polyfill https://github.com/scottjehl/Respond)

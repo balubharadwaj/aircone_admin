@@ -1,6 +1,6 @@
 <div class="row">
-  <div class="col-lg-12">
-      <!-- <div class="card">
+    <div class="col-lg-12">
+        <!-- <div class="card">
           <div class="card-header">
               <i class="fa fa-align-justify"></i> Search
           </div>
@@ -24,45 +24,45 @@
               </div>
           </div>
       </div> -->
-      
-      <div class="card">
-          <div class="card-header">
-              <i class="fa fa-align-justify"></i> List of All User Reviews
-          </div>
-          <div class="card-block">
-              <table class="rwd-table table table-bordered table-striped table-condensed">
-                  <thead>
-                      <tr>
-                          <th>Index</th>
-                          <th>User Name</th>
-                          <th>User Email</th>
-                          <th>User Comment</th>
-                          <!-- <th>Actions</th> -->
-                          <th class="gender">Actions</th>
-                      </tr>
-                  </thead>
-                  <tbody>
 
-                      <tr *ngFor="let user of users">
-                          <!-- <td data-th="Index">{{pagination(i,curPage)}}</td> -->
-                          <td data-th="Vendor Name">{{user.id}}</td>
-                          <!-- <td data-th="Post Image">{{request.userId}}</td> -->
-                          <td data-th="Title"><span class="tipTitle">{{user.userId.firstName}}</span></td>
-                          <td data-th="Category">{{user.userId.email}}</td>
-                          <td data-th="Category">{{user.comment}}</td>                          
-                          <td data-th="Actions">
-                            <button class="btn btn-danger btn-sm point" type="button" (click)="deleteRequest(user)">Delete</button>                       
-                            <!-- <button [disabled]="request.status === 'ORDER_ACCEPTED'" class="btn btn-primary btn-sm point" type="button" (click)="requestApprove(request)">Approve Request</button>
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i> List of All User Reviews
+            </div>
+            <div class="card-block tableAuto">
+                <table class="rwd-table table table-bordered table-striped table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Index</th>
+                            <th>User Name</th>
+                            <th>User Email</th>
+                            <th>User Comment</th>
+                            <!-- <th>Actions</th> -->
+                            <th class="gender">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="let user of users">
+                            <!-- <td data-th="Index">{{pagination(i,curPage)}}</td> -->
+                            <td data-th="Vendor Name">{{user.id}}</td>
+                            <!-- <td data-th="Post Image">{{request.userId}}</td> -->
+                            <td data-th="Title"><span class="tipTitle">{{user.userId.firstName}}</span></td>
+                            <td data-th="Category">{{user.userId.email}}</td>
+                            <td data-th="Category">{{user.comment}}</td>
+                            <td data-th="Actions">
+                                <button class="btn btn-danger btn-sm point" type="button" (click)="deleteRequest(user)">Delete</button>
+                                <!-- <button [disabled]="request.status === 'ORDER_ACCEPTED'" class="btn btn-primary btn-sm point" type="button" (click)="requestApprove(request)">Approve Request</button>
                             <button [disabled]="request.status === 'ORDER_DECLINED'" class="btn btn-info btn-sm point" type="button" (click)="requestDecline(request)">Decline Request</button> -->
-                            <!-- <button type="button" class="editIcon" (click)="modal.open()">Open me!</button> -->
-                            
-                        </td>
-                          <!-- <td class="like" data-th="Likes">{{request.createdAt}}</td> -->
-                      </tr>
-                  </tbody>
-              </table>
-              <!-- <pagination-controls (pageChange)="changePage($event)" autoHide="true" previousLabel="" nextLabel=""></pagination-controls> -->
-          </div>
-      </div>
-  </div>
+                                <!-- <button type="button" class="editIcon" (click)="modal.open()">Open me!</button> -->
+
+                            </td>
+                            <!-- <td class="like" data-th="Likes">{{request.createdAt}}</td> -->
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- <pagination-controls (pageChange)="changePage($event)" autoHide="true" previousLabel="" nextLabel=""></pagination-controls> -->
+            </div>
+        </div>
+    </div>
 </div>

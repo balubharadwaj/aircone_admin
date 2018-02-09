@@ -17,8 +17,6 @@ export class TipsService {
     this.options = new RequestOptions({headers: headers});
     console.log('Hello TipsService Provider');
   }
-
-
   loadServices() {
     return new Promise(resolve => {
       this.http.get('http://localhost:1337/get/allRequest')
