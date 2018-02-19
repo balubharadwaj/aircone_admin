@@ -23,6 +23,7 @@ export class SparepartsComponent implements OnInit {
   ngOnInit() {
   }
 
+
   sparepartsedit(spare) {
     this.spareparts = spare
     this.editSpare = true;
@@ -38,10 +39,16 @@ export class SparepartsComponent implements OnInit {
   }
 
   searchTips(searchText) {
-    this.airconeService.searchSpare(this.searchService, searchText)
-    .then(data => {
-      this.spares = data;
-    })
+    if(!searchText) {
+      searchText = "undefined"
+    }
+    console.log(this.searchService, searchText)
+    if(this.searchService && searchText) {
+      this.airconeService.searchSpare(this.searchService, searchText)
+      .then(data => {
+        this.spares = data;
+      })
+    }
   }
 
   loadServices () {
@@ -76,6 +83,8 @@ export class SparepartsComponent implements OnInit {
 
   clearSearch() {
     this.listspares();
+    this.searchText = ''
+    this.searchService = undefined
   }
 
 

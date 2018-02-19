@@ -361,6 +361,17 @@ export class AirconeService {
     });
   }
 
+  getOnePincode(searchText) {
+    return new Promise(resolve => {
+      this.http.get(this.baseURL+'/get/'+searchText+'/checkPincode')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
   searchSpare(serviceId, searchText) {
     return new Promise(resolve => {
       this.http.get(this.baseURL+'/get/'+serviceId+'/'+searchText+'/searviceSpare')       

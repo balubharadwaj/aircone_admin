@@ -6,7 +6,7 @@ import {AirconeService} from '../providers/tipsProvider/aircone.service';
 })
 export class CustomerserviceComponent implements OnInit {
 
-  users;
+  users: any = []
 
   constructor(public airconeService: AirconeService) {
     this.loadUsers()
