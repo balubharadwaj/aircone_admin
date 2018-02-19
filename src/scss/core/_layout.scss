@@ -97,6 +97,21 @@ app-root {
     }
 }
 
+.requestDetails {
+    .form-group {
+        margin-bottom: 0;
+    }
+}
+
+.addservice {
+    .addRound {
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 20px;
+        padding: 5px 15px;
+        margin: 0 10px;
+    }
+}
+
 .sidebar-compact {
     .sidebar {
         flex: 0 0 $sidebar-compact-width;
