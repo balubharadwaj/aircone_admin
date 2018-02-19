@@ -190,6 +190,14 @@ modal-title {
     padding: 10px;
 }
 
+button:hover,
+button:hover,
+button:focus {
+    background: #f86c6b;
+    color: #fff;
+    box-shadow: inherit;
+}
+
 .serviceImg {
     position: relative;
     text-align: center;
