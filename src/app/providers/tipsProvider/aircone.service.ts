@@ -284,6 +284,17 @@ export class AirconeService {
     });
   }
 
+  updateSpare(data) {
+    return new Promise(resolve => {
+      this.http.put(this.baseURL+'/get/sparePartsUpdate', data)       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
   loadspares() {
     return new Promise(resolve => {
       this.http.get(this.baseURL+'/get/allspareslist')       
@@ -342,6 +353,17 @@ export class AirconeService {
   getAllPincodes() {
     return new Promise(resolve => {
       this.http.get(this.baseURL+'/get/allPincodes')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  getOnePincode(searchText) {
+    return new Promise(resolve => {
+      this.http.get(this.baseURL+'/get/'+searchText+'/checkPincode')       
         .map(res => res.json())
         .subscribe(data => {
           this.data = data;
