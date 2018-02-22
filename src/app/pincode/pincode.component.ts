@@ -8,6 +8,8 @@ export class PincodeComponent implements OnInit {
 
   pincode: any = {pincode: '', location: ''}
   pincodes;
+  searchService;
+  searchText;
 
   constructor(public airconeService: AirconeService) { 
     this.getAllPincodes()
@@ -17,7 +19,6 @@ export class PincodeComponent implements OnInit {
   }
 
   pincodeadd(pincode) {
-    console.log(pincode)
     this.pincode = pincode
     this.airconeService.addPincode(this.pincode)
     .then( data => {
@@ -26,7 +27,6 @@ export class PincodeComponent implements OnInit {
   }
 
   removePincode(pincode) {
-    console.log(pincode)
     this.airconeService.removePincode(pincode)
     .then( data => {
       this.getAllPincodes()
@@ -38,5 +38,17 @@ export class PincodeComponent implements OnInit {
     .then( data => {
       this.pincodes = data;
     })
+  }
+
+  searchPins(searchText) {
+    this.airconeService.getOnePincode(searchText)
+    .then( data => {
+      this.pincodes = data;
+    })
+  }
+
+  clearSearch() {
+    this.getAllPincodes();
+    this.searchText = ''
   }
 }

@@ -15,7 +15,6 @@ export class AuthService {
   baseURL = "https://air-cone-backend.appspot.com"; //production
   // baseURL = "http://localhost:80"; //development
 
-
   constructor(public http: Http, public globalservices:globalService) {
     //console.log(this.baseURL);
 

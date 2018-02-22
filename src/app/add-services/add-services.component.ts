@@ -8,11 +8,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AddServicesComponent implements OnInit {
 
-  public service: any = {image:'', slider:[], priceChart:[], serviceName:'', description:'', note:'', servicetype:[], subService:[]};
+  public service: any = {image:'', slider:[], priceChart:[], serviceName:'', description:'', note:[], servicetype:[], subService:[]};
   private serviceId: any;
   updatetrue: boolean = false;
   subServices = [];
   subService;
+  serviceNote;
   
   constructor(public airconeService: AirconeService, public modal: Modal, private route: ActivatedRoute) { 
     this.serviceId = route.params['_value']['serviceId'];  
@@ -162,6 +163,15 @@ this.service.servicetype.push(onetype)
     .title('Added Service')
     .body('<p>'+ msg +'</p>')
     .open();
+  }
+
+  addNote(serviceNote) {
+    this.service.note.push(serviceNote)
+    this.serviceNote = ''
+  }
+
+  removeNote(type) {
+    this.service.note.splice(this.service.note.indexOf(type), 1)
   }
 
 }

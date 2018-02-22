@@ -96,6 +96,7 @@ export class ListRequestsComponent implements OnInit {
     this.getAllRequests();  
   })
  }
+
   requestDecline(request) {
     var reason = {reason: this.Reason}
     this.airconeService.declineRequest(request.id, request.userId, reason)
@@ -115,10 +116,14 @@ export class ListRequestsComponent implements OnInit {
   }
 
   latestRequests() {
+    if(!this.searchServiceId) {
+      this.searchServiceId = "undefined"
+    }
      var searchString = 'ORDER_REQUESTED';
      this.searchServiceId;
      this.airconeService.statusWiseRequests(this.searchServiceId, searchString)
      .then( data => {
+      this.searchServiceId = undefined
       this.requests = data;      
      })
   }
@@ -126,18 +131,26 @@ export class ListRequestsComponent implements OnInit {
   pendingRequests() {
     var searchString = 'ORDER_APPROVED';
     this.searchServiceId;
+    if(!this.searchServiceId) {
+      this.searchServiceId = "undefined"
+    }
     this.airconeService.statusWiseRequests(this.searchServiceId, searchString)
     .then( data => {
      this.requests = data;    
+     this.searchServiceId = undefined     
     })
   }
 
   closedRequests() {
+    if(!this.searchServiceId) {
+      this.searchServiceId = "undefined"
+    }
     var searchString = 'ORDER_CLOSED';
     this.searchServiceId;
     this.airconeService.statusWiseRequests(this.searchServiceId, searchString)
     .then( data => {
-     this.requests = data;      
+     this.requests = data;     
+     this.searchServiceId = undefined     
     })
   }
 

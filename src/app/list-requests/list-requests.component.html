@@ -46,6 +46,7 @@
                             <th>Mechanic Name</th>
                             <th>Status</th>
                             <th>Service Price</th>
+                            <th>Date</th>                            
                             <th class="gender">Actions</th>
                         </tr>
                     </thead>
@@ -58,7 +59,8 @@
                             <td data-th="Title"><span class="tipTitle">{{request.serviceName}}</span></td>
                             <td data-th="Post Image">{{request.mechanicName}}</td>
                             <td data-th="Category">{{request.status}}</td>
-                            <td data-th="Title"><span class="tipTitle">{{request.finalPrice}}</span></td>
+                            <td data-th="Title"><span class="tipTitle">{{request.finalCharge}}</span></td>
+                            <td data-th="Title"><span class="tipTitle">{{request.createdAt | date}}</span></td>                            
                             <td style="white-space: nowrap;" data-th="Actions">
                                 <button class="btn btn-danger btn-sm point" type="button" *ngIf="request.adminStatus != 'INACTIVE'" (click)="inActiveRequest(request)">InActive</button>
                                 <button class="btn btn-info btn-sm" (click)="myModal.open()" (click)="getOneRequest(request)">View</button>
@@ -145,7 +147,60 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-5">
+                <div *ngIf="Onerequest">
+                    <img src="{{Onerequest.serviceImage}}" width="150px" />
+                    <h4>{{Onerequest.serviceName}}</h4>
+                    <div *ngFor="let type of Onerequest.request.Type">
+                        {{type.type}},  {{type.ton}},   {{type.quantity}}
+                    </div>
+                    <!-- <div>
+                        <b>Total service Prive</b>: <span>{{Onerequest.finalPrice}}</span>
+                    </div>
+                    <div *ngIf="Onerequest.serviceQuantityInfo">
+                        <b>Service Info</b>:
+                        <p>{{Onerequest.serviceQuantityInfo.name}}, {{Onerequest.serviceQuantityInfo.type}}, {{Onerequest.serviceQuantityInfo.Price}}</p>
+                    </div>
+                    <div>
+                        <b>Service Spare Info</b>:
+                        <p *ngFor="let spare of Onerequest.spareInfo">{{spare.sparename}}, {{spare.sparerate*spare.rate}}</p>
+                    </div> -->
+                    <div>
+                            <b>Spares list</b>:
+                            <span *ngFor="let spare of Onerequest.finalSpare">
+                            <p>{{spare.sparename}}, {{spare.sparerate}}, {{spare.rate*spare.sparerate}}</p>
+                            </span>
+                    </div>
 
+                    <div>
+                            <b>Spares Total Price</b>: {{Onerequest.finalSparePrice}}
+                           
+                    </div>
+
+                    <div>
+                            <b>Service list</b>:
+                            <span *ngFor="let spare of Onerequest.finalService">
+                            <p>{{spare.name}}, {{spare.type}}, {{spare.Price}}, {{spare.rate*spare.Price}}</p>
+                            </span>
+                    </div>
+
+                    <div>
+                            <b>Service Total Price</b>: {{Onerequest.finalServicePrice}}
+                           
+                    </div>
+                    <div>
+                            <b>extras</b>: {{Onerequest.extras}}
+                       
+                    </div>
+                    <div>
+                            <b>Request Total Price</b>: {{Onerequest.finalCharge}}
+                           
+                    </div>
+                </div>
+            </div> 
+            <div *ngIf="Onerequest">
+                {{Onerequest.cancelReason}}
+            </div>
             <div class="clearfix"></div>
         </div>
         <div class="form-group row">

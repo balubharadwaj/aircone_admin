@@ -114,7 +114,13 @@
                         <div class="row">
                             <label class="col-md-2 form-control-label">Service Note</label>
                             <div class="col-md-10">
-                                <input type="text" name="note" class="form-control" [(ngModel)]="service.note" placeholder="Note">
+                                <input type="text" name="note" class="form-control" [(ngModel)]="serviceNote" placeholder="Note">
+                                <span class="add" (click)="addNote(serviceNote)">+</span>
+                                <div class="addservice">
+                                    <p *ngFor="let type of service.note">
+                                    {{type}} <span class="removeicon" (click)="removeNote(type)">X</span>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>

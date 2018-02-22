@@ -49,10 +49,12 @@
                                 <select class="form-control col-md-8" name="service" [(ngModel)]="spareparts.Serviceid" required>
                             <option [ngValue]="All">All Services</option>
                             <option *ngFor="let service of services" [ngValue]="service.id">{{service.serviceName}}</option>
+
                         </select>
                             </td>
                             <td data-th="Actions">
-                                <button class="btn btn-danger btn-sm point" type="button" (click)="sparepartsadd(spareparts)">Add spare</button>
+                                <button class="btn btn-danger btn-sm point" type="button" *ngIf="!editSpare" (click)="sparepartsadd(spareparts)">Add spare</button>
+                                <button class="btn btn-danger btn-sm point" type="button" *ngIf="editSpare" (click)="sparepartsupdate(spareparts)">Update spare</button> 
                             </td>
                         </tr>
                         <tr *ngFor="let spare of spares">
@@ -61,6 +63,7 @@
                             <td data-th="Title"><span class="tipTitle"></span>{{spare.Serviceid}}</td>
                             <td data-th="Actions">
                                 <button class="btn btn-danger btn-sm point" type="button" (click)="sparepartsremove(spare)">Delete</button>
+                                <button class="btn btn-danger btn-sm point" type="button" (click)="sparepartsedit(spare)">Edit</button> 
                             </td>
                         </tr>
                     </tbody>
