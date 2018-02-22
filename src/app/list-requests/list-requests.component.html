@@ -46,7 +46,7 @@
                             <th>Mechanic Name</th>
                             <th>Status</th>
                             <th>Service Price</th>
-                            <th>Date / Time</th>                            
+                            <th>Date</th>                            
                             <th class="gender">Actions</th>
                         </tr>
                     </thead>
@@ -60,7 +60,7 @@
                             <td data-th="Post Image">{{request.mechanicName}}</td>
                             <td data-th="Category">{{request.status}}</td>
                             <td data-th="Title"><span class="tipTitle">{{request.finalCharge}}</span></td>
-                            <td data-th="Title"><span class="tipTitle">{{request.createdAt}}</span></td>                            
+                            <td data-th="Title"><span class="tipTitle">{{request.createdAt | date}}</span></td>                            
                             <td style="white-space: nowrap;" data-th="Actions">
                                 <button class="btn btn-danger btn-sm point" type="button" *ngIf="request.adminStatus != 'INACTIVE'" (click)="inActiveRequest(request)">InActive</button>
                                 <button class="btn btn-info btn-sm" (click)="myModal.open()" (click)="getOneRequest(request)">View</button>
@@ -168,7 +168,11 @@
                            
                     </div>
                     <div>
-                            <b>Service Total Price</b>: {{Onerequest.finalCharge}}
+                            <b>extras</b>: {{Onerequest.extras}}
+                       
+                    </div>
+                    <div>
+                            <b>Request Total Price</b>: {{Onerequest.finalCharge}}
                            
                     </div>
                 </div>

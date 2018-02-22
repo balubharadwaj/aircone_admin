@@ -96,6 +96,7 @@ export class ListRequestsComponent implements OnInit {
     this.getAllRequests();  
   })
  }
+
   requestDecline(request) {
     var reason = {reason: this.Reason}
     this.airconeService.declineRequest(request.id, request.userId, reason)
