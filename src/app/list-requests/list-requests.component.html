@@ -82,40 +82,61 @@
     </modal-header>
     <modal-content>
         <div class="row">
+            <div class="col-md-5">
+                <div *ngIf="Onerequest">
+                    <h4>{{Onerequest.serviceName}}</h4>
+                    <img src="{{Onerequest.serviceImage}}" width="150px" />
+
+                    <div *ngFor="let type of Onerequest.request.Type">
+                        {{type.type}} {{type.ton}} {{type.quantity}}
+                    </div>
+                    <div>
+                        <b>Total service Price</b>: <span>{{Onerequest.finalPrice}}</span>
+                    </div>
+                    <div *ngIf="Onerequest.serviceQuantityInfo">
+                        <b>Service Info</b>:
+                        <p>{{Onerequest.serviceQuantityInfo.name}}, {{Onerequest.serviceQuantityInfo.type}}, {{Onerequest.serviceQuantityInfo.Price}}</p>
+                    </div>
+                    <div>
+                        <b>Service Spare Info</b>:
+                        <p *ngFor="let spare of Onerequest.spareInfo">{{spare.sparename}}, {{spare.sparerate*spare.rate}}</p>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-7">
-                <div *ngIf="userAddress">
+                <div *ngIf="userAddress" class="requestDetails">
                     <div class="form-group row">
-                        <label class="col-sm-5 control-label">User Name </label>
+                        <label class="col-sm-5 control-label">User Name:</label>
                         <div class="col-sm-7">
                             <p class="form-control-static"> {{userAddress.Name}}</p>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-5 control-label">User Phone   </label>
+                        <label class="col-sm-5 control-label">User Phone:</label>
                         <div class="col-sm-7">
                             <p class="form-control-static"> {{userAddress.Phone}}</p>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-5 control-label">User Alt Phone </label>
+                        <label class="col-sm-5 control-label">User Alt Phone:</label>
                         <div class="col-sm-7">
                             <p class="form-control-static"> {{userAddress.AltPhone}}</p>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-5 control-label">User Address</label>
+                        <label class="col-sm-5 control-label">User Address:</label>
                         <div class="col-sm-7">
                             <p class="form-control-static"> {{userAddress.Door}}, {{userAddress.Street}}, {{userAddress.Area}}</p>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-5 control-label">User Pincode </label>
+                        <label class="col-sm-5 control-label">User Pincode: </label>
                         <div class="col-sm-7">
                             <p class="form-control-static">{{userAddress.Pincode}}</p>
                         </div>
                     </div>
                     <div class="form-group row" *ngIf="Onerequest.referredBy">
-                        <label class="col-sm-5 control-label">Reffered By </label>
+                        <label class="col-sm-5 control-label">Reffered By:</label>
                         <div class="col-sm-7">
                             <p class="form-control-static">{{Onerequest.referredBy}}</p>
                         </div>
@@ -183,14 +204,14 @@
             <div class="clearfix"></div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 form-control-label">Reason for decline</label>
+            <label class="col-md-3 form-control-label">Reason for decline</label>
             <div class="col-md-7">
                 <input type="text" name="title" class="form-control" [(ngModel)]="Reason" placeholder="Reason" required>
             </div>
             <button class="btn btn-danger btn-sm point col-md-1" type="button" *ngIf="Onerequest" (click)="requestDecline(Onerequest)">Decline</button>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 form-control-label">Select Mechanic</label>
+            <label class="col-md-3 form-control-label">Select Mechanic</label>
             <div class="form-group col-md-4">
                 <select class="form-control" name="userassign" [(ngModel)]="mechanicUserId">
                     <option [ngValue]= "all" disabled>Select Mechanic</option>                                                                                     
