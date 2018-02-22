@@ -204,9 +204,6 @@ app-root {
     transition-property: margin-left, margin-right;
 }
 
-//
-// Mobile layout
-//
 @include media-breakpoint-down(md) {
     .app-header {
         position: fixed !important;
