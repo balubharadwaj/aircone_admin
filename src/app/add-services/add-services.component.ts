@@ -133,10 +133,7 @@ this.service.servicetype.push(onetype)
       
     } 
     else {
-      console.log(this.service)
-      
-      console.log("new service")
-      if(this.service.image != '') {
+        if(this.service.image != '') {
         this.service.subServices = this.subServices        
         this.airconeService.addService(this.service)
         .then( data => {

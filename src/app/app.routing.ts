@@ -72,6 +72,10 @@ export const routes: Routes = [
         path: 'Pincode',
         loadChildren: './pincode/pincode.module#pincodeListModule'
       },
+      {
+        path: 'Settings',
+        loadChildren: './settings/settings.module#settingsModule'
+      },
     ]
   },
   {

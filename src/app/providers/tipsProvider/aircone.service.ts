@@ -361,6 +361,40 @@ export class AirconeService {
     });
   }
 
+
+  createSettings(data) {
+    return new Promise(resolve => {
+      this.http.post(this.baseURL+'/create/setting', data)       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  updateSettings(data) {
+    return new Promise(resolve => {
+      this.http.put(this.baseURL+'/setting/update', data)       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  loadSettings() {
+    return new Promise(resolve => {
+      this.http.get(this.baseURL+'/get/settings')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
   getOnePincode(searchText) {
     return new Promise(resolve => {
       this.http.get(this.baseURL+'/get/'+searchText+'/checkPincode')       
