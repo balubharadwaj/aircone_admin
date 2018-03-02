@@ -24,6 +24,8 @@ export class ListRequestsComponent implements OnInit {
   Reason;
   services;
   searchServiceId;
+  searchId;
+  RequestStatus = "All Requests"
   constructor(public airconeService: AirconeService,public router: Router, private route: ActivatedRoute) { 
     this.getAllRequests();
     this.getAllUsers();
@@ -116,6 +118,7 @@ export class ListRequestsComponent implements OnInit {
   }
 
   latestRequests() {
+    this.RequestStatus = "All Latest Requests"
     if(!this.searchServiceId) {
       this.searchServiceId = "undefined"
     }
@@ -129,6 +132,7 @@ export class ListRequestsComponent implements OnInit {
   }
 
   pendingRequests() {
+    this.RequestStatus = "All Pending Requests"
     var searchString = 'ORDER_APPROVED';
     this.searchServiceId;
     if(!this.searchServiceId) {
@@ -142,6 +146,7 @@ export class ListRequestsComponent implements OnInit {
   }
 
   closedRequests() {
+    this.RequestStatus = "All Completed Requests"
     if(!this.searchServiceId) {
       this.searchServiceId = "undefined"
     }
@@ -155,10 +160,21 @@ export class ListRequestsComponent implements OnInit {
   }
 
   inActivatedRequests() {
+    this.RequestStatus = "All Inactivated Requests"
     this.airconeService.inActivatedRequests()
     .then( data => {
      this.requests = data;      
     })
+  }
+
+  searchRequest() {
+    if (this.searchId) {
+      console.log("hitted")
+      this.airconeService.getRequestedRequest(this.searchId)
+      .then( data => {
+       this.requests = data;      
+      })
+    }
   }
 
 }
