@@ -461,6 +461,17 @@ export class AirconeService {
     });
   }
 
+  AddEXtraSpare(data, requestId) {
+    return new Promise(resolve => {
+      this.http.post(this.baseURL+'/edit/'+requestId+'/Request', data)       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
   deleteUserWiseFeedback(id) {
     return new Promise(resolve => {
       this.http.delete(this.baseURL+'/delete/'+id+'/userFeedback')       
