@@ -76,6 +76,10 @@ export const routes: Routes = [
         path: 'Settings',
         loadChildren: './settings/settings.module#settingsModule'
       },
+      {
+        path: 'Extras',
+        loadChildren: './extras/extras.module#extrasModule'
+      },
     ]
   },
   {

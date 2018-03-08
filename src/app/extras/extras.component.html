@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="col-lg-12">
+      <!-- <div class="card">
+        <div class="card-header">
+            <i class="fa fa-align-justify"></i> Search
+        </div>
+        <div class="card-block">
+            <div class="row">
+                <div class="form-group col-md-2">
+                    <select class="form-control">
+                        <option value="all">All Categories</option>
+                        <option *ngFor="let category of Categories">{{category.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-7">
+                    <input type="text" class="form-control" [(ngModel)]="searchText" id="searchText" placeholder="Search">
+                </div>
+                <div class="form-group col-md-3">
+                    <button (click)="searchTips(searchText)" type="button" class="btn btn-default point">Search</button>
+                    <button (click)="clearSearch()" type="button" class="btn btn-default point">Clear</button>
+                </div>
+
+
+            </div>
+        </div>
+    </div> -->
+
+      <div class="card">
+          <div class="card-header">
+              <i class="fa fa-align-justify"></i> Extra Spare List
+          </div>
+          <div class="card-block tableAuto">
+              <table class="rwd-table table table-bordered table-striped table-condensed">
+                  <thead>
+                      <tr>
+                          <th>Request Id</th>
+                          <th>Mechanic Name</th>
+                          <th>Mechanic Mobile</th>
+                          <th>User Name</th>
+                          <th>Service</th>
+                          <th>Extras Name</th>
+                          <!-- <th class="gender">Actions</th> -->
+                      </tr>
+                  </thead>
+                  <tbody>
+
+                      <tr *ngFor="let request of requests">
+                          <!-- <td data-th="Index">{{pagination(i,curPage)}}</td> -->
+                          <td data-th="Vendor Name">{{request.requestId}}</td>
+                          <!-- <td data-th="Post Image">{{request.userId}}</td> -->
+                          <td data-th="Title"><span class="tipTitle">{{request.mechanicName}}</span></td>
+                          <td data-th="Category">{{request.mechMobileNumber}}</td>
+                          <td data-th="Category">{{request.request.Name}}</td>
+                          <td data-th="Category">{{request.serviceName}}</td>
+                          <td data-th="Category">
+                            <p *ngFor="let extra of request.extras">{{extra}}</p></td>                          
+                          <!-- <td data-th="Actions">
+                              <button class="btn btn-danger btn-sm point" type="button" (click)="deleteRequest(user)">Delete</button> -->
+                              <!-- <button [disabled]="request.status === 'ORDER_ACCEPTED'" class="btn btn-primary btn-sm point" type="button" (click)="requestApprove(request)">Approve Request</button>
+                          <button [disabled]="request.status === 'ORDER_DECLINED'" class="btn btn-info btn-sm point" type="button" (click)="requestDecline(request)">Decline Request</button> -->
+                              <!-- <button type="button" class="editIcon" (click)="modal.open()">Open me!</button> -->
+
+                          <!-- </td> -->
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+</div>

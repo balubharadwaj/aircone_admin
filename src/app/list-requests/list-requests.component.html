@@ -6,14 +6,14 @@
             </div>
             <div class="card-block">
                 <div class="row">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-9">
                                 <input type="text" class="form-control" [(ngModel)]="searchId" id="searchId" placeholder="Search Id">
                         </div>
                         <div class="form-group col-md-3">
                                 <button (click)="searchRequest(searchId)" type="button" class="btn btn-default point">Search</button>
                                 <button (click)="getAllRequests()" type="button" class="btn btn-default point btnMargin">Clear</button>
                         </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-12">
                         <select name="ServiceId" class="form-control" [(ngModel)]="searchServiceId">
                             <option [ngValue]="all">All Services</option>
                             <option *ngFor="let service of services"  [ngValue]="service.id">{{service.serviceName}}</option>
