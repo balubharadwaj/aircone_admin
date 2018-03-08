@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AirconeService} from '../providers/tipsProvider/aircone.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   templateUrl: './pincode.component.html',
@@ -10,8 +11,9 @@ export class PincodeComponent implements OnInit {
   pincodes;
   searchService;
   searchText;
-
-  constructor(public airconeService: AirconeService) { 
+  curPage = '1';
+  itemsPPage = 10;
+  constructor(public airconeService: AirconeService,public router: Router) { 
     this.getAllPincodes()
     }
 
@@ -51,5 +53,14 @@ export class PincodeComponent implements OnInit {
   clearSearch() {
     this.getAllPincodes();
     this.searchText = ''
+  }
+
+  pagination(i,p){    
+    return ((Number(this.curPage)- 1)*this.itemsPPage)+i+1;
+  }
+
+  changePage(event){
+    this.router.navigate(['/Pincode/'+event]);
+    this.curPage = event;
   }
 }

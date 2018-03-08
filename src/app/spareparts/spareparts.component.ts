@@ -13,6 +13,8 @@ export class SparepartsComponent implements OnInit {
     searchText;
     searchService;
     editSpare: boolean = false;
+    curPage = '1';
+    itemsPPage = 10;
 
   constructor(public airconeService: AirconeService, public router: Router) {
     this.loadServices()
@@ -85,6 +87,15 @@ export class SparepartsComponent implements OnInit {
     this.listspares();
     this.searchText = ''
     this.searchService = undefined
+  }
+
+  pagination(i,p){    
+    return ((Number(this.curPage)- 1)*this.itemsPPage)+i+1;
+  }
+
+  changePage(event){
+    this.router.navigate(['/SpareParts/'+event]);
+    this.curPage = event;
   }
 
 

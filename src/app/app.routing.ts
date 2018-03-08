@@ -53,11 +53,11 @@ export const routes: Routes = [
         loadChildren: './userslist/userslist.module#vendorsListModule'
       },
       {
-        path: 'UserFeedback',
+        path: 'UserFeedback/:page',
         loadChildren: './customerservice/customerservice.module#customerserviceModule'
       },
       {
-        path: 'SpareParts',
+        path: 'SpareParts/:page',
         loadChildren: './spareparts/spareparts.module#sparepartsModule'
       },
       {
@@ -69,7 +69,7 @@ export const routes: Routes = [
         loadChildren: './Details/Details.module#DetailsModule'
       },
       {
-        path: 'Pincode',
+        path: 'Pincode/:page',
         loadChildren: './pincode/pincode.module#pincodeListModule'
       },
       {

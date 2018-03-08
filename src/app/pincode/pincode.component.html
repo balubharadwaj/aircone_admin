@@ -48,7 +48,7 @@
                     <button class="btn btn-danger btn-sm point" type="button" (click)="removePincode(pincode.pincode)">Remove Pincode</button>                     
                   </td>
                   </tr>
-                  <tr *ngFor="let pincode of pincodes">
+                  <tr *ngFor="let pincode of pincodes  | paginate: { itemsPerPage: itemsPPage, currentPage: curPage };let i = index" [attr.data-index]="i">
                       <td data-th="Title">{{pincode.pincode}}</td>
                       <td data-th="Title">{{pincode.location}}</td>                                          
                       <td data-th="Actions">
@@ -57,6 +57,7 @@
                   </tr>
               </tbody>
           </table>
+          <pagination-controls (pageChange)="changePage($event)" autoHide="true" previousLabel="" nextLabel=""></pagination-controls>          
           </div>
       </div>
   </div>

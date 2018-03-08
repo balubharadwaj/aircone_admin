@@ -169,10 +169,10 @@ export class ListRequestsComponent implements OnInit {
 
   searchRequest() {
     if (this.searchId) {
-      console.log("hitted")
       this.airconeService.getRequestedRequest(this.searchId)
       .then( data => {
-       this.requests = data;      
+       this.requests = data;  
+       this.searchId = ''    
       })
     }
   }

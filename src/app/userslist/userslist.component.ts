@@ -49,7 +49,7 @@ export class UserslistComponent implements OnInit {
   }
 
   changePage(event){
-    this.router.navigate(['/ListRequests/'+event]);
+    this.router.navigate(['/UsersList/'+event]);
     this.curPage = event;
   }
 
