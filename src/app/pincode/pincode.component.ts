@@ -22,6 +22,7 @@ export class PincodeComponent implements OnInit {
     this.pincode = pincode
     this.airconeService.addPincode(this.pincode)
     .then( data => {
+      this.pincode = {}
       this.getAllPincodes()
     })
   }
