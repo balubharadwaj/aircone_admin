@@ -25,7 +25,8 @@ export class ListRequestsComponent implements OnInit {
   services;
   searchServiceId;
   searchId;
-  RequestStatus = "All Requests"
+  RequestStatus = "All Requests";
+  extras: any = {}
   constructor(public airconeService: AirconeService,public router: Router, private route: ActivatedRoute) { 
     this.getAllRequests();
     this.getAllUsers();
@@ -175,6 +176,16 @@ export class ListRequestsComponent implements OnInit {
        this.searchId = ''    
       })
     }
+  }
+
+  AddExtraSpare(targetRequest) {
+    var requestId = targetRequest.id
+    if(this.extras.sparename && this.extras.sparerate && this.extras.rate) {
+      this.airconeService.AddEXtraSpare(this.extras, requestId)
+      .then(res => {
+        this.extras = {}
+      })
+    } 
   }
 
 }
