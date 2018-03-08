@@ -17,7 +17,6 @@ export class MechanicsComponent implements OnInit {
   }
 
     submitButton(validVal: NgForm){
-    console.log(validVal);
     if(validVal.valid){
      this.mechanicProfile(validVal);
     }
@@ -29,7 +28,6 @@ export class MechanicsComponent implements OnInit {
     //  delete TempData.confirmPassword;
     this.authService.register(TempData).then( data => {
       this.data = data;
-      console.log(this.data)
       if(this.data.status === 412) {
         this.errOf('user alredy existed');
       }

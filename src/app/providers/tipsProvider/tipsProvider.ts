@@ -23,8 +23,6 @@ export class TipsService {
         .map(res => res.json())
         .subscribe(data => {
           this.data = data;
-          console.log("dcsdcs")
-          console.log(this.data)
           resolve(this.data);
         })
     })

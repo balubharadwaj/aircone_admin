@@ -9,7 +9,7 @@ export class AirconeService {
   data;
   options;
   imageData;
-   baseURL = "https://air-cone-backend.appspot.com"; //production
+   baseURL = "http://ec2-52-15-87-36.us-east-2.compute.amazonaws.com"; //production
   //  baseURL = "http://localhost:80"; //development
   
   constructor(public http: Http, public globalservices:globalService) {
@@ -339,6 +339,17 @@ export class AirconeService {
     });
   }
 
+  getExtras() {
+    return new Promise(resolve => {
+      this.http.get(this.baseURL+'/get/extrasData')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
   removePincode(data) {
     return new Promise(resolve => {
       this.http.delete(this.baseURL+'/remove/'+data+'/pincode')       
@@ -353,6 +364,40 @@ export class AirconeService {
   getAllPincodes() {
     return new Promise(resolve => {
       this.http.get(this.baseURL+'/get/allPincodes')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+
+  createSettings(data) {
+    return new Promise(resolve => {
+      this.http.post(this.baseURL+'/create/setting', data)       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  updateSettings(data) {
+    return new Promise(resolve => {
+      this.http.put(this.baseURL+'/setting/update', data)       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  loadSettings() {
+    return new Promise(resolve => {
+      this.http.get(this.baseURL+'/get/settings')       
         .map(res => res.json())
         .subscribe(data => {
           this.data = data;
@@ -397,6 +442,17 @@ export class AirconeService {
   inActivatedRequests() {
     return new Promise(resolve => {
       this.http.get(this.baseURL+'/get/allinActiveRequest')       
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        })
+    });
+  }
+
+  getRequestedRequest(requestId) {
+    return new Promise(resolve => {
+      this.http.get(this.baseURL+'/get/'+requestId+'/getRequestId')       
         .map(res => res.json())
         .subscribe(data => {
           this.data = data;

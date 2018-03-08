@@ -77,11 +77,11 @@ this.service.servicetype.push(onetype)
   myfile: any;
   fileChange(fileinput: any) {
     this.myfile = fileinput.target.files[0];
-    console.log(this.myfile)
     this.airconeService.fileUpload(this.myfile)
     .then(data => {
       this.service.image = '';
       this.service.image = (data['files'][0].url);
+      console.log(data['files'][0].url)      
     },
   err => {
     console.log(err);
@@ -133,10 +133,7 @@ this.service.servicetype.push(onetype)
       
     } 
     else {
-      console.log(this.service)
-      
-      console.log("new service")
-      if(this.service.image != '') {
+        if(this.service.image != '') {
         this.service.subServices = this.subServices        
         this.airconeService.addService(this.service)
         .then( data => {
