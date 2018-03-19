@@ -54,7 +54,7 @@
                             </td>
                             <td data-th="Actions">
                                 <button class="btn btn-danger btn-sm point" type="button" *ngIf="!editSpare" (click)="sparepartsadd(spareparts)">Add spare</button>
-                                <button class="btn btn-danger btn-sm point" type="button" *ngIf="editSpare" (click)="sparepartsupdate(spareparts)">Update spare</button> 
+                                <button class="btn btn-danger btn-sm point" type="button" *ngIf="editSpare" (click)="sparepartsupdate(spareparts)">Update spare</button>
                             </td>
                         </tr>
                         <tr *ngFor="let spare of spares  | paginate: { itemsPerPage: itemsPPage, currentPage: curPage };let i = index" [attr.data-index]="i">
@@ -63,13 +63,13 @@
                             <td data-th="Title"><span class="tipTitle"></span>{{spare.Serviceid}}</td>
                             <td data-th="Actions">
                                 <button class="btn btn-danger btn-sm point" type="button" (click)="sparepartsremove(spare)">Delete</button>
-                                <button class="btn btn-danger btn-sm point" type="button" (click)="sparepartsedit(spare)">Edit</button> 
+                                <button class="btn btn-danger btn-sm point" type="button" (click)="sparepartsedit(spare)">Edit</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 <pagination-controls (pageChange)="changePage($event)" autoHide="true" previousLabel="" nextLabel=""></pagination-controls>
-                
+
             </div>
         </div>
     </div>
