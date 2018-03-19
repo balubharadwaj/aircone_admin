@@ -277,6 +277,7 @@ $breakpoint-alpha: 768px; // adjust to your needs
     }
     td {
         display: block;
+        text-transform: capitalize;
         &:first-child {
             padding-top: .5em;
         }

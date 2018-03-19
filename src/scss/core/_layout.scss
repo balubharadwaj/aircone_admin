@@ -270,3 +270,14 @@ app-root {
         }
     }
 }
+
+.userDetails {
+    .form-group {
+        .control-label {
+            margin-bottom: 0;
+        }
+        p {
+            padding: 0;
+        }
+    }
+}
